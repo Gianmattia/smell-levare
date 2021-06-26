@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="FinaleIspw">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../eclipse/java-2020-122/eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="15"/>
+    <property name="source" value="15"/>
+    <path id="Apache Tomcat v8.5 [Apache Tomcat v8.5].libraryclasspath">
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/annotations-api.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/catalina-ant.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/catalina-ha.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/catalina-tribes.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/catalina.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/ecj-4.6.3.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/el-api.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/jasper-el.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/jasper.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/jaspic-api.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/jsp-api.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/servlet-api.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-api.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-i18n-de.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-i18n-ko.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-i18n-ru.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-i18n-zh-CN.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-jni.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-util.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../Tomcatfinale2/apache-tomcat-8.5.61/lib/websocket-api.jar"/>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/jsp-api-2.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jstl-1.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/servlet-api.jar"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="JavaFX SDK.libraryclasspath"/>
+    <path id="FinaleIspw.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v8.5 [Apache Tomcat v8.5].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="JavaFX SDK.libraryclasspath"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.base.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.controls.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.fxml.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.graphics.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.media.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.swing.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.web.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx-swt.jar"/>
+        <pathelement location="../../Javafx/jfoenix-9.0.10.jar"/>
+        <pathelement location="../../Ispw/Eclipse jar/jsp-api-2.1.jar"/>
+        <pathelement location="../../Ispw/Eclipse jar/servlet-api.jar"/>
+        <pathelement location="../../mysql-connector-java-8.0.22.jar"/>
+    </path>
+    <path id="run.Main (19).classpath">
+        <path refid="FinaleIspw.classpath"/>
+        <path refid="Apache Tomcat v8.5 [Apache Tomcat v8.5].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="JavaFX SDK.libraryclasspath"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.base.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.controls.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.fxml.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.graphics.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.media.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.swing.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx.web.jar"/>
+        <pathelement location="../../javafx-sdk-15.0.1/lib/javafx-swt.jar"/>
+        <pathelement location="../../Javafx/jfoenix-9.0.10.jar"/>
+        <pathelement location="../../Ispw/Eclipse jar/jsp-api-2.1.jar"/>
+        <pathelement location="../../Ispw/Eclipse jar/servlet-api.jar"/>
+        <pathelement location="../../mysql-connector-java-8.0.22.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.xtend"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="FinaleIspw.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="Main (19)">
+        <java classname="logic.applicationController.Main" failonerror="true" fork="yes">
+            <jvmarg line="--module-path  C:\Users\gianm\Desktop\javafx-sdk-15.0.1\lib --add-modules=javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.web --add-reads javafx.graphics=ALL-UNNAMED --add-opens javafx.controls/com.sun.javafx.charts=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio.common=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.css=ALL-UNNAMED --add-opens javafx.base/com.sun.javafx.runtime=ALL-UNNAMED"/>
+            <classpath refid="run.Main (19).classpath"/>
+        </java>
+    </target>
+</project>
