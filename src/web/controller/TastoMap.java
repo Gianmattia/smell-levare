@@ -24,7 +24,6 @@ import logic.utils.SessionUser;
 @WebServlet("/TastoMap")
 public class TastoMap extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Employee Utente = new Employee();
     String TipoUtente;
     SessionArtist sa = SessionArtist.getInstance();
 	SessionSponsor ss = SessionSponsor.getInstance();
@@ -34,7 +33,6 @@ public class TastoMap extends HttpServlet {
 	
     public TastoMap() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

@@ -10,8 +10,8 @@ public class GeneralUserConnection {
 		private static Connection conn=null;
 		
 		private static String user = "root";
-		private static String pass = "0000";
-	    private static String dbUrl = "jdbc:mysql://localhost:3306/provafinale?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		private static String pass = "showroome";
+	    private static String dbUrl = "jdbc:mysql://localhost:3306/prova?autoReconnect=true&useSSL=false";
 		private static String driverClassName = "com.mysql.jdbc.Driver";
 		
 		private GeneralUserConnection() {

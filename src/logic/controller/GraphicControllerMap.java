@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import logic.applicationController.MapController;
+import logic.appcontroller.MapController;
 import logic.bean.EventBean;
 import logic.entity.Event;
 

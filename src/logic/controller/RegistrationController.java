@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import logic.applicationController.RegistrationAppController;
+import logic.appcontroller.RegistrationAppController;
 import logic.exceptions.DuplicateUsernameException;
 
 public class RegistrationController implements Initializable {
@@ -92,7 +92,7 @@ public class RegistrationController implements Initializable {
 
     @FXML
     void registerSponsor(ActionEvent event) {
-    	
+    	//to do
     }
 
     @FXML

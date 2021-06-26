@@ -19,8 +19,7 @@ import web.model.Employee;
 @WebServlet("/Homepage")
 public class Homepage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Employee Utente = new Employee();
-    String TipoUtente;
+    String tipoUtente;
     
     public Homepage() {
         super();

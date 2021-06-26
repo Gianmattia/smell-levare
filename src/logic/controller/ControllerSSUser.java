@@ -10,8 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-import logic.applicationController.HostShowSponsorController;
-import logic.applicationController.SSUserController;
+import logic.appcontroller.SSUserController;
 import logic.bean.SponsoredShowBean;
 
 public class ControllerSSUser implements Initializable {

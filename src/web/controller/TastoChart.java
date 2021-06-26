@@ -20,13 +20,11 @@ import web.model.Employee;
 @WebServlet("/TastoChart")
 public class TastoChart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Employee Utente = new Employee();
-    String TipoUtente;
+    String tipoUtente;
     String Artist;
 
     public TastoChart() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	

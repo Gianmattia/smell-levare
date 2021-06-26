@@ -1,45 +1,23 @@
 package logic.controller;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.Glow;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 
-import logic.applicationController.LoginController;
-import logic.bean.GeneralUserBean;
+import logic.appcontroller.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+
 
 public class GraphicControllerLogin{
 	@FXML

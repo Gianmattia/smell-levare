@@ -8,27 +8,27 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import logic.entity.Artist;
-import logic.entity.Place;
+
 import logic.entity.Review;
+import logic.exceptions.DuplicateReviewException;
 
 public class ReviewDao {
 	
-	private static String USER = "root";
-	private static String PASS = "0000";
-    private static String DB_URL = "jdbc:mysql://localhost:3306/provafinale?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
+	private static String user = "root";
+	private static String pass = "showroome";
+    private static String dbUrl = "jdbc:mysql://localhost:3306/prova?autoReconnect=true&useSSL=false";
+	private static String driverClassName = "com.mysql.cj.jdbc.Driver";
 	
 	public List<Review> getReview(String artist) {
 		Statement stmt = null;
         Connection conn = null;
-        List<Review> r= new ArrayList<Review>();
+        List<Review> r= new ArrayList<>();
         try {
         	//STEP 2: loading dinamico del driver mysql
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(dbUrl, user, pass);
             
          // STEP 4.1: creazione ed esecuzione della query
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -37,7 +37,7 @@ public class ReviewDao {
             ResultSet rs = stmt.executeQuery(sql);
             
             if (!rs.first()) { // rs not empty
-            	return null;
+            	return r;
             }
          // riposizionamento del cursore
             rs.first();
@@ -82,17 +82,17 @@ public class ReviewDao {
             
 	}
 	
-	public void submitReview(String author, String artist, String review) {
+	public void submitReview(String author, String artist, String review) throws DuplicateReviewException {
 		// STEP 1: dichiarazioni
         Statement stmt = null;
         Connection conn = null;
         
         try {
         	// STEP 2: loading dinamico del driver mysql
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+            conn = DriverManager.getConnection(dbUrl, user, pass); 
             
          // STEP 4.1: creazione ed esecuzione della query
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -104,8 +104,7 @@ public class ReviewDao {
             stmt.close();
             conn.close();
         } catch (SQLException se) {
-            // Errore durante l'apertura della connessione
-            se.printStackTrace();
+            throw new DuplicateReviewException("artist already reviewed");
         } catch (Exception e) {
             // Errore nel loading del driver
             e.printStackTrace();

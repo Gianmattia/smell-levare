@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import logic.applicationController.RSSApplicationController;
+import logic.appcontroller.RSSApplicationController;
 import logic.bean.RequestedShowBean;
 import logic.utils.SessionSponsor;
 
@@ -62,7 +62,7 @@ public class ControllerRequestSponsor implements Initializable {
 
     @FXML
     void dismissButton(ActionEvent event) {
-    	
+    	//to be implemented
     }
 
     @FXML

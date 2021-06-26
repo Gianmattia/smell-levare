@@ -25,10 +25,10 @@ public class TastoMapArtista extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     int ringbell=0;
     String MapArtistJsp = "/WEB-INF/views/MapArtist.jsp";
+    String book= "already booked";
     
     public TastoMapArtista() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
@@ -60,8 +60,8 @@ public class TastoMapArtista extends HttpServlet {
         }
 		
 		if(ringbell==0) {
-			session.setAttribute("Posto", "already booked");
-    		session.setAttribute("Indirizzo", "already booked");
+			session.setAttribute("Posto", book);
+    		session.setAttribute("Indirizzo", book);
     		session.setAttribute("Capienza", 0);
 		}
 		ringbell=0;

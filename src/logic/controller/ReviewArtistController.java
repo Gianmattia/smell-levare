@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import logic.applicationController.ReviewController;
+import logic.appcontroller.ReviewController;
 import logic.bean.ReviewBean;
 import logic.utils.SessionUser;
 

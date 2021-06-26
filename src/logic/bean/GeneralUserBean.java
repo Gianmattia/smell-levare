@@ -1,6 +1,6 @@
 package logic.bean;
 
-import java.io.Serializable;
+
 
 public class GeneralUserBean {
 	

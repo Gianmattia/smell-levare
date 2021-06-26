@@ -8,15 +8,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import logic.entity.Artist;
+
 import logic.entity.Place;
 
 public class PlaceDao {
 	//passo 0, dichiaro variabili
-		private static String USER = "root";
-		private static String PASS = "0000";
-	    private static String DB_URL = "jdbc:mysql://localhost:3306/provafinale?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-		private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
+		private static String user = "root";
+		private static String pass = "showroome";
+	    private static String dbUrl = "jdbc:mysql://localhost:3306/prova?autoReconnect=true&useSSL=false";
+		private static String driverClassName = "com.mysql.cj.jdbc.Driver";
 		
 		public List<Place> getFreePlacesDao() {
 			Statement stmt = null;
@@ -25,10 +25,10 @@ public class PlaceDao {
 	        
 	        try {
 	        	//STEP 2: loading dinamico del driver mysql
-	            Class.forName(DRIVER_CLASS_NAME);
+	            Class.forName(driverClassName);
 	            
 	         // STEP 3: apertura connessione
-	            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+	            conn = DriverManager.getConnection(dbUrl, user, pass);
 	            
 	            
 	        	
@@ -39,7 +39,7 @@ public class PlaceDao {
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            if (!rs.first()) { // rs not empty
-	            	return null;
+	            	return freePlaces;
 	            }
 	         // riposizionamento del cursore
 	            rs.first();
@@ -92,12 +92,11 @@ public class PlaceDao {
 	        Place p= null;
 	        try {
 	        	//STEP 2: loading dinamico del driver mysql
-	            Class.forName(DRIVER_CLASS_NAME);
+	            Class.forName(driverClassName);
 	            
 	         // STEP 3: apertura connessione
-	            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+	            conn = DriverManager.getConnection(dbUrl, user, pass);
 	            
-	        	//conn = GeneralUserConnection.getUserConnection();
 	         // STEP 4.1: creazione ed esecuzione della query
 	            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                    ResultSet.CONCUR_READ_ONLY);
@@ -119,7 +118,6 @@ public class PlaceDao {
 	            // STEP 6: Clean-up dell'ambiente
 	            rs.close();
 	            stmt.close();
-	            //UserConnection.closeUserConnection();
 	            conn.close();
 	        } catch (SQLException se) {
 	            // Errore durante l'apertura della connessione
@@ -152,10 +150,10 @@ public class PlaceDao {
 	        
 	        try {
 	        	// STEP 2: loading dinamico del driver mysql
-	            Class.forName(DRIVER_CLASS_NAME);
+	            Class.forName(driverClassName);
 	            
 	         // STEP 3: apertura connessione
-	            conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+	            conn = DriverManager.getConnection(dbUrl, user, pass); 
 	            
 	        	
 	         // STEP 4.1: creazione ed esecuzione della query

@@ -10,8 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import logic.applicationController.SessionArtistController;
-import logic.utils.SessionArtist;
+
 
 public class LoggedArtistController implements Initializable{
 

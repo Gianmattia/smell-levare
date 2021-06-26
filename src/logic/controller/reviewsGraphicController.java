@@ -1,6 +1,6 @@
 package logic.controller;
 
-import java.io.IOException;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +8,18 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import logic.applicationController.ReviewController;
+import logic.appcontroller.ReviewController;
 import logic.bean.ReviewBean;
+import logic.exceptions.DuplicateReviewException;
 
-public class reviewsGraphicController implements Initializable{
+public class ReviewsGraphicController implements Initializable{
 	//non uso più vedirecensioni e recensioni scritte
 	 @FXML
 	    private AnchorPane rootpane5;
@@ -29,8 +30,7 @@ public class reviewsGraphicController implements Initializable{
 	    @FXML
 	    private Button searchButton;
 
-	    /*@FXML
-	    private Button artistButton;*/
+	    
 
 	    @FXML
 	    private AnchorPane reviewsPane;
@@ -72,34 +72,45 @@ public class reviewsGraphicController implements Initializable{
 	    private TextField artistText;
 
 	    
-	    List<ReviewBean> lrb = new ArrayList<ReviewBean>();
+	    List<ReviewBean> lrb = new ArrayList<>();
 
 	    @FXML
 	    void artistReviews(ActionEvent event) {
-	    	//non dovrebbe esserci!
+	    	//no more used
 	    }
 
 	    @FXML
 	    void refresh(ActionEvent event) {
-	    	
+	    	//to be implemented
 	    }
 	    
 	    @FXML
 	    void searchButtonClicked(ActionEvent event) {
+	    	//to clear previous researches
+	    	String def = "default";
+	    	authorLabel1.setText(def);
+	    	descriptionLabel1.setText(def);
+	    	authorLabel2.setText(def);
+	    	descriptionLabel2.setText(def);
+	    	authorLabel3.setText(def);
+	    	descriptionLabel3.setText(def);
 	    	writingPane.setVisible(false);//can't write a review while browsing other reviews
 	    	String barName = research.getText(); //gets searched name
 	    	ReviewController rc = new ReviewController();
 	    	lrb = rc.getReviews(barName);
 	    	reviewsPane.setVisible(true); //this is the pane where reviews are displayed
-	    	authorLabel1.setText(lrb.get(0).getAuthor());
-	    	descriptionLabel1.setText(lrb.get(0).getReview());
-	    	lrb.remove(0);
-	    	if(lrb.size()!=0) {
+	    	if(!lrb.isEmpty()) {
+	    		authorLabel1.setText(lrb.get(0).getAuthor());
+	    		descriptionLabel1.setText(lrb.get(0).getReview());
+	    		lrb.remove(0);
+	    	}
+	    	
+	    	if(!lrb.isEmpty()) {
 	    		authorLabel2.setText(lrb.get(0).getAuthor());
 	    		descriptionLabel2.setText(lrb.get(0).getReview());
 	    		lrb.remove(0);
 	    	}
-	    	if(lrb.size()!=0) {
+	    	if(!lrb.isEmpty()) {
 	    		authorLabel3.setText(lrb.get(0).getAuthor());
 	    		descriptionLabel3.setText(lrb.get(0).getReview());
 	    		lrb.remove(0);
@@ -107,14 +118,18 @@ public class reviewsGraphicController implements Initializable{
 	    }
 
 	    @FXML
-	    void submitReview(ActionEvent event) {
+	    void submitReview(ActionEvent event){
 	    	if(textArea.getText().isBlank() || artistText.getText().isBlank()) {
 	    		//implementa eccezione o controllo perchè non sono state inserite review e/o artista riferito
-	    		System.out.println("intanto printa questo");
 	    	}
 	    	else {
 	    		ReviewController rc = new ReviewController();
-	    		rc.saveReview( artistText.getText(), textArea.getText());
+	    		try {
+					rc.saveReview( artistText.getText(), textArea.getText());
+				} catch (DuplicateReviewException e) {
+					//da implementare
+					e.printStackTrace();
+				}
 	    	}
 	    }
 
@@ -123,7 +138,6 @@ public class reviewsGraphicController implements Initializable{
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			//These elements start not visible
-			//artistButton.setVisible(false);
 			reviewsPane.setVisible(false);
 			refreshButton.setVisible(false);
 			notFoundLabel.setVisible(false);

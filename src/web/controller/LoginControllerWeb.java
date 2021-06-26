@@ -30,7 +30,6 @@ public class LoginControllerWeb extends HttpServlet {
      */
     public LoginControllerWeb() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
  
@@ -49,10 +48,8 @@ public class LoginControllerWeb extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub    
         String idUsername = request.getParameter("username");
         String idPassword = request.getParameter("password");
-        //String idTipoartista=request.getParameter("numero2");
         String idTipoartista = request.getParameter("tipoutente");
         int id = Integer.parseInt(idTipoartista);
         LoginController lc = new LoginController();

@@ -4,13 +4,13 @@ public class Review {
 //aims to associate each review to both an aritst and the author
 	String author;
 	String artist;
-	String review;
+	String rev; //A field should not duplicate the name of its containing class rev=review
 	
 	public Review(String author, String artist, String review) {
 		super();
 		this.author = author;
 		this.artist = artist;
-		this.review = review;
+		this.rev = review; 
 	}
 
 	public String getAuthor() {
@@ -30,11 +30,11 @@ public class Review {
 	}
 
 	public String getReview() {
-		return review;
+		return rev;
 	}
 
 	public void setReview(String review) {
-		this.review = review;
+		this.rev = review;
 	}
 
 	

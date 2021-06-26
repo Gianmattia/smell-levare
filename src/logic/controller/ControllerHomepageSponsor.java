@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import logic.applicationController.SessionSponsorController;
+import logic.appcontroller.SessionSponsorController;
 import logic.utils.SessionSponsor;
 
 public class ControllerHomepageSponsor implements Initializable{
@@ -57,7 +57,7 @@ public class ControllerHomepageSponsor implements Initializable{
 
     @FXML
     void dismissShow(ActionEvent event) {
-
+    	//add dismiss show
     }
 
     @FXML

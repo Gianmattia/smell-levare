@@ -21,7 +21,6 @@ public class TestSelenium2 {
 	   
        String value = driver.findElement(By.xpath("/html/body/h1[4]/input")).getText();
      
-	   System.out.println(value);
 
 
 	  

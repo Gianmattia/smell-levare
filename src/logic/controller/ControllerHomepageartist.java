@@ -12,8 +12,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import logic.applicationController.HomepageArtistController;
-import logic.applicationController.SessionArtistController;
+import logic.appcontroller.HomepageArtistController;
+import logic.appcontroller.SessionArtistController;
 import logic.bean.EventBean;
 import logic.utils.SessionArtist;
 

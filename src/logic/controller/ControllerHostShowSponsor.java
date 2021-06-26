@@ -14,8 +14,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import logic.applicationController.HostShowSponsorController;
+import logic.appcontroller.HostShowSponsorController;
 import logic.dao.SponsorDao;
+import logic.exceptions.PendingRequestException;
 
 public class ControllerHostShowSponsor implements Initializable {
 	 @FXML
@@ -56,7 +57,12 @@ public class ControllerHostShowSponsor implements Initializable {
     	 String description = descriptionTextBox.getText();
     	 String partner = partnerLabel.getText();
     	 SponsorDao sd = new SponsorDao();
-    	 sd.createSSQueue(title, artist, partner, description);
+    	 try {
+			sd.createSSQueue(title, artist, partner, description);
+		} catch (PendingRequestException e) {
+			//implementare logica di errore
+			e.printStackTrace();
+		}
 	    }
 
 	@Override

@@ -9,26 +9,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logic.entity.Artist;
-import logic.entity.Place;
 
 public class ArtistDao {
-	private static String USER = "root";
-	private static String PASS = "0000";
-    private static String DB_URL = "jdbc:mysql://localhost:3306/provafinale?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
+	private static String user = "root";
+	private static String pass = "showroome";
+    private static String dbUrl = "jdbc:mysql://localhost:3306/prova?autoReconnect=true&useSSL=false";
+	private static String driverClassName = "com.mysql.cj.jdbc.Driver";
+	//defined for code smell purposes
+	String un = "username";
+    String ps = "password";
+    String em = "email";
+    String ds = "description";
+    String tl = "talent";
 	
 	public Artist getArtist(String name) {
 		Statement stmt = null;
         Connection conn = null;
         Artist a= null;
+        
         try {
         	//STEP 2: loading dinamico del driver mysql
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(dbUrl, user, pass);
             
-        	//conn = GeneralUserConnection.getUserConnection();
+        	
          // STEP 4.1: creazione ed esecuzione della query
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
@@ -42,17 +48,16 @@ public class ArtistDao {
             rs.first();
             
          // lettura colonne
-            String usrnm = rs.getString("username");
-            String psswrd = rs.getString("password");
-            String email = rs.getString("email");
-            String description = rs.getString("description");
-            String talent = rs.getString("talent");
+            String usrnm = rs.getString(un);
+            String psswrd = rs.getString(ps);
+            String email = rs.getString(em);
+            String description = rs.getString(ds);
+            String talent = rs.getString(tl);
          //create entity
             a = new Artist(usrnm, psswrd, email, description, talent);
             // STEP 6: Clean-up dell'ambiente
             rs.close();
             stmt.close();
-            //UserConnection.closeUserConnection();
             conn.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
@@ -85,12 +90,11 @@ public class ArtistDao {
         Artist a= null;
         try {
         	//STEP 2: loading dinamico del driver mysql
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(dbUrl, user, pass);
             
-        	//conn = GeneralUserConnection.getUserConnection();
          // STEP 4.1: creazione ed esecuzione della query
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
@@ -104,11 +108,11 @@ public class ArtistDao {
             rs.first();
             
          // lettura colonne
-            String usrnm = rs.getString("username");
-            String psswrd = rs.getString("password");
-            String email = rs.getString("email");
-            String description = rs.getString("description");
-            String talent = rs.getString("talent");
+            String usrnm = rs.getString(un);
+            String psswrd = rs.getString(ps);
+            String email = rs.getString(em);
+            String description = rs.getString(ds);
+            String talent = rs.getString(tl);
             
             if (!usrnm.equals(username)|| !psswrd.equals(password)) {
             	//controllo 
@@ -150,25 +154,27 @@ public class ArtistDao {
         
         try {
         	// STEP 2: loading dinamico del driver mysql
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+            conn = DriverManager.getConnection(dbUrl, user, pass); 
             
         	
          // STEP 4.1: creazione ed esecuzione della query
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY); 
+            String where = "' WHERE username = '";
+            
             if(!email.equals("")) {
-            	String sql = "UPDATE artists SET email = '" + email + "' WHERE username = '" + artist + "';";
+            	String sql = "UPDATE artists SET email = '" + email + where + artist + "';";
             	stmt.executeUpdate(sql);
             }
             if(!talent.equals("")) {
-            	String sql1 = "UPDATE artists SET talent = '" + talent + "' WHERE username = '" + artist + "';";
+            	String sql1 = "UPDATE artists SET talent = '" + talent + where + artist + "';";
             	stmt.executeUpdate(sql1);
             }
             if(!description.equals("")) {
-            	String sql2 = "UPDATE artists SET description = '" + description + "' WHERE username = '" + artist + "';";
+            	String sql2 = "UPDATE artists SET description = '" + description + where + artist + "';";
             	stmt.executeUpdate(sql2);
             }
             
@@ -206,10 +212,10 @@ public class ArtistDao {
         
         try {
         	//STEP 2: loading dinamico del driver mysql
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(dbUrl, user, pass);
             
             
         	
@@ -220,7 +226,7 @@ public class ArtistDao {
             ResultSet rs = stmt.executeQuery(sql);
             
             if (!rs.first()) { // rs not empty
-            	return null;
+            	return artists;
             }
          // riposizionamento del cursore
             rs.first();
@@ -277,10 +283,10 @@ public void registerArtist(String username, String password, String email, Strin
         
         try {
         	// STEP 2: loading dinamico del driver mysql
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+            conn = DriverManager.getConnection(dbUrl, user, pass); 
             
         	
          // STEP 4.1: creazione ed esecuzione della query

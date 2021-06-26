@@ -18,12 +18,10 @@ import web.model.Employee;
 @WebServlet("/register")
 public class EmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Employee Utente = new Employee();
-    String TipoUtente;
+    String tipoUtente;
 
     public EmployeeServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	

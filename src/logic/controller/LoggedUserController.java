@@ -44,13 +44,20 @@ public class LoggedUserController implements Initializable {
     
 
     @FXML
-    void cariHome(MouseEvent event) throws Exception {
+    void cariHome(MouseEvent event){
     	//home button action
-    	AnchorPane barrafiltra = FXMLLoader.load(getClass().getResource("/logic/boundary/Homepage.fxml"));	
- 		rootpane3.getChildren().setAll(barrafiltra);
- 		rootpaneLong.setMaxHeight(barrafiltra.getHeight());
-		rootpaneLong.setPrefHeight(barrafiltra.getHeight());
-		rootpaneLong.setMinHeight(barrafiltra.getHeight());
+    	AnchorPane barrafiltra;
+		try {
+			barrafiltra = FXMLLoader.load(getClass().getResource("/logic/boundary/Homepage.fxml"));
+			rootpane3.getChildren().setAll(barrafiltra);
+	 		rootpaneLong.setMaxHeight(barrafiltra.getHeight());
+			rootpaneLong.setPrefHeight(barrafiltra.getHeight());
+			rootpaneLong.setMinHeight(barrafiltra.getHeight());
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}	
+ 		
     }
 
     @FXML

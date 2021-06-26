@@ -1,5 +1,7 @@
 package logic.dao;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,9 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Random;
 
-//import logic.dao.GeneralUserConnection;
 import logic.entity.GeneralUser;
+
 import logic.exceptions.DuplicateUsernameException;
+
 
 public class GeneralUserDao {
 	/*
@@ -20,14 +23,14 @@ public class GeneralUserDao {
 	 * 5) Gestire e visualizzare i risultati ottenuti dalle ResultSet.
 	 */
 	//passo 0, dichiaro variabili
-	private static String USER = "root";
-	private static String PASS = "0000";
-    private static String DB_URL = "jdbc:mysql://localhost:3306/provafinale?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
+	private static String user = "root";
+	private static String pass = "showroome";
+    private static String dbUrl = "jdbc:mysql://localhost:3306/prova?autoReconnect=true&useSSL=false";
+	private static String driverClassName = "com.mysql.cj.jdbc.Driver";
 	
 	
 	
-	public GeneralUser login(String username1, String password) throws Exception {
+	public GeneralUser login(String username1, String password){
 		// STEP 1: dichiarazioni
         Statement stmt = null;
         Connection conn = null;
@@ -35,10 +38,10 @@ public class GeneralUserDao {
         
         try {
         	//STEP 2: loading dinamico del driver mysql
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(dbUrl, user, pass);
             
          // STEP 4.1: creazione ed esecuzione della query
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -100,10 +103,10 @@ public class GeneralUserDao {
         
         try {
         	// STEP 2: loading dinamico del driver mysql
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+            conn = DriverManager.getConnection(dbUrl, user, pass); 
             
         	
          // STEP 4.1: creazione ed esecuzione della query
@@ -142,15 +145,21 @@ public class GeneralUserDao {
 		// STEP 1: dichiarazioni
         Statement stmt = null;
         Connection conn = null;
-        Random rand = new Random();
-        int i = rand.nextInt(9000);
+        Random rand;
+        int i=9999;
+		try {
+			rand = SecureRandom.getInstanceStrong();
+			i = rand.nextInt(9000);
+		} catch (NoSuchAlgorithmException e1) {
+			e1.printStackTrace();
+		}  
         
         try {
         	//STEP 2: loading dinamico del driver mysql
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(dbUrl, user, pass);
             
          // STEP 4.1: creazione ed esecuzione della query
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,

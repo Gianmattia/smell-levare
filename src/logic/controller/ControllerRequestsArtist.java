@@ -13,10 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import logic.applicationController.RequestsArtistController;
+import logic.appcontroller.RequestsArtistController;
 import logic.bean.RequestedShowBean;
 import logic.bean.SponsorBean;
-import logic.dao.RequestsDao;
+
 
 public class ControllerRequestsArtist implements Initializable {
 	@FXML
