@@ -28,6 +28,8 @@ public class TastoMap extends HttpServlet {
     String TipoUtente;
     SessionArtist sa = SessionArtist.getInstance();
 	SessionSponsor ss = SessionSponsor.getInstance();
+	String message ="there is no show here";
+	 String MapArtistJsp = "/WEB-INF/views/MapArtist.jsp";
 	int ringbell = 0;
 	
     public TastoMap() {
@@ -58,19 +60,19 @@ public class TastoMap extends HttpServlet {
         }
         
         if(ringbell==0) {
-        	session.setAttribute("mapPlace", "there is no show here");
-    		session.setAttribute("mapArtist", "there is no show here");
-    		session.setAttribute("mapDescription", "there is no show here");
+        	session.setAttribute("mapPlace", message);
+    		session.setAttribute("mapArtist", message);
+    		session.setAttribute("mapDescription",message);
         }
         
         ringbell=0;
         SessionUser su = SessionUser.getInstance();
         if(sa.getUsername()!=null) {
-        	RequestDispatcher dispatcherN = request.getRequestDispatcher("/WEB-INF/views/MapArtist.jsp");
+        	RequestDispatcher dispatcherN = request.getRequestDispatcher(MapArtistJsp);
         	dispatcherN.forward(request, response);
         }
         if(su.getId()==3) {
-        	RequestDispatcher dispatcherM = request.getRequestDispatcher("/WEB-INF/views/MapArtist.jsp");
+        	RequestDispatcher dispatcherM = request.getRequestDispatcher(MapArtistJsp);
         	dispatcherM.forward(request, response);
         }
         else {
@@ -85,7 +87,7 @@ public class TastoMap extends HttpServlet {
 		
 		
 	    if (sa.getUsername()!=null){
-	    RequestDispatcher dispatcher2 = request.getRequestDispatcher("/WEB-INF/views/MapArtist.jsp");
+	    RequestDispatcher dispatcher2 = request.getRequestDispatcher(MapArtistJsp);
 		dispatcher2.forward(request, response);
 	    }
 	    if (ss.getUsername()!=null){

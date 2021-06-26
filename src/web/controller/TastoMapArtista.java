@@ -24,6 +24,7 @@ import logic.utils.SessionSponsor;
 public class TastoMapArtista extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     int ringbell=0;
+    String MapArtistJsp = "/WEB-INF/views/MapArtist.jsp";
     
     public TastoMapArtista() {
         super();
@@ -64,7 +65,7 @@ public class TastoMapArtista extends HttpServlet {
     		session.setAttribute("Capienza", 0);
 		}
 		ringbell=0;
-		RequestDispatcher dispatcherN = request.getRequestDispatcher("/WEB-INF/views/MapArtist.jsp");
+		RequestDispatcher dispatcherN = request.getRequestDispatcher( MapArtistJsp);
     	dispatcherN.forward(request, response);
 	}
 		
@@ -78,7 +79,7 @@ public class TastoMapArtista extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("Hosting", name);
-			RequestDispatcher dispatcherN = request.getRequestDispatcher("/WEB-INF/views/MapArtist.jsp");
+			RequestDispatcher dispatcherN = request.getRequestDispatcher( MapArtistJsp);
 	    	dispatcherN.forward(request, response);
 	    	
 		}
