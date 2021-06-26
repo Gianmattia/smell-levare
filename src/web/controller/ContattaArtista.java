@@ -16,13 +16,10 @@ public class ContattaArtista extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
-    public ContattaArtista() {
-        super();
-    }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// not used
 	}
 
 	

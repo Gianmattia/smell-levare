@@ -25,6 +25,7 @@ import logic.exceptions.DuplicateUsernameException;
 @WebServlet("/Registrazione")
 public class Registrazione extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    String LoginJsp="/WEB-INF/views/Login.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -55,17 +56,17 @@ public class Registrazione extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	   RequestDispatcher dispatcher1 = request.getRequestDispatcher("/WEB-INF/views/Login.jsp");
+    	   RequestDispatcher dispatcher1 = request.getRequestDispatcher(LoginJsp);
            dispatcher1.forward(request, response); 
        }
        else if(id2.equals("Performer")) {
     	   rac.artistReg(username, password, param1, description, param2);
-    	   RequestDispatcher dispatcher1 = request.getRequestDispatcher("/WEB-INF/views/Login.jsp");
+    	   RequestDispatcher dispatcher1 = request.getRequestDispatcher(LoginJsp);
            dispatcher1.forward(request, response); 
        }
        else if(id2.equals("Sponsor")) {
     	   rac.sponsorReg(username, password, param1, param2, description);
-    	   RequestDispatcher dispatcher1 = request.getRequestDispatcher("/WEB-INF/views/Login.jsp");
+    	   RequestDispatcher dispatcher1 = request.getRequestDispatcher(LoginJsp);
            dispatcher1.forward(request, response); 
        }
       //gestire errore 
