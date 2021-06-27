@@ -32,7 +32,7 @@ for (int i=0; i<titles.size(); i++){
 %>
     
 <!DOCTYPE html>
-<html>
+<html  lang="it">
 
 
   <head>

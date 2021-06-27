@@ -20,7 +20,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html  lang="it">
   <head>
     <title>Prova</title>
   </head>

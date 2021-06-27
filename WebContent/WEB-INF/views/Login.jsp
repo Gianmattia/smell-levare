@@ -2,29 +2,10 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 
-<html>
+<html  lang="it">
   <head>
     <title>Prova</title>
-    <style  type="text/css">
-p{
 
- color:red;
-
-}
-h1{
-
-background-colo:yellow
-
-}
-
-
-
-
-
-
-
-
-</style>
   </head>
     <h1 style="margin-top: px; margin-left: 115px;"> ShowRoome </h1>
     <p style="margin-top: -60px; margin-left: 115px;"> </p>

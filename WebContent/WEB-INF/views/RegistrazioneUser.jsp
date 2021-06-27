@@ -4,7 +4,7 @@
 String ids = (String)session.getAttribute("id_reg");
 %>
 <!DOCTYPE html>
-<html>
+<html  lang="it">
   <head>
     <title>Prova</title>
   </head>

@@ -11,7 +11,7 @@
     %>
     
 <!DOCTYPE html>
-<html>
+<html  lang="it">
   <body style="height: 512px; background-color: white;"><img
 
       src="https://image.flaticon.com/icons/png/512/26/26362.png" alt="" style="width: 93px; height: 73px; margin-left: -2px;"><br>
