@@ -2,16 +2,13 @@ package web.controller;
 
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import web.model.Employee;   
 import javax.servlet.http.HttpSession;
-
 import logic.applicationController.MapController;
 import logic.bean.EventBean;
 import logic.utils.SessionArtist;
@@ -24,11 +21,11 @@ import logic.utils.SessionUser;
 @WebServlet("/TastoMap")
 public class TastoMap extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    String TipoUtente;
+    String tipoutente;
     SessionArtist sa = SessionArtist.getInstance();
 	SessionSponsor ss = SessionSponsor.getInstance();
 	String message ="there is no show here";
-	 String MapArtistJsp = "/WEB-INF/views/MapArtist.jsp";
+	 String mapartistjsp = "/WEB-INF/views/MapArtist.jsp";
 	int ringbell = 0;
 	
     public TastoMap() {
@@ -66,11 +63,11 @@ public class TastoMap extends HttpServlet {
         ringbell=0;
         SessionUser su = SessionUser.getInstance();
         if(sa.getUsername()!=null) {
-        	RequestDispatcher dispatcherN = request.getRequestDispatcher(MapArtistJsp);
+        	RequestDispatcher dispatcherN = request.getRequestDispatcher(mapartistjsp);
         	dispatcherN.forward(request, response);
         }
         if(su.getId()==3) {
-        	RequestDispatcher dispatcherM = request.getRequestDispatcher(MapArtistJsp);
+        	RequestDispatcher dispatcherM = request.getRequestDispatcher(mapartistjsp);
         	dispatcherM.forward(request, response);
         }
         else {
@@ -85,7 +82,7 @@ public class TastoMap extends HttpServlet {
 		
 		
 	    if (sa.getUsername()!=null){
-	    RequestDispatcher dispatcher2 = request.getRequestDispatcher(MapArtistJsp);
+	    RequestDispatcher dispatcher2 = request.getRequestDispatcher(mapartistjsp);
 		dispatcher2.forward(request, response);
 	    }
 	    if (ss.getUsername()!=null){

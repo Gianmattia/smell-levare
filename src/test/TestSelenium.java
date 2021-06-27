@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class TestSelenium {
+public class testselenium {
    public static void main(String[] args) {
 	   System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe");
 	   WebDriver driver = new ChromeDriver();

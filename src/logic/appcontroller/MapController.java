@@ -17,21 +17,21 @@ public class MapController {
 	//application controller to pass an array list to the graphic controller
 	//convert list<event> in list<eventBean>
 	public List<EventBean> liveEventsList(){
-		List<EventBean> leb = new ArrayList<>();//return value
+		List<EventBean> leb2 = new ArrayList<>();//return value
 		EventDao ed = new EventDao();
 		List<Event> le = ed.getLiveEvents();
 		
 		for(int i = 0; i < le.size(); i++) {
-			EventBean x = new EventBean();
+			EventBean c = new EventBean();
 			Event event = le.get(i);
-			x.setArtist(event.getArtist());
-			x.setDescription(event.getDescription());
-			x.setName(event.getName());
-			x.setPlace(event.getPlace());
-			leb.add(x);//building eventBean list
+			c.setArtist(event.getArtist());
+			c.setDescription(event.getDescription());
+			c.setName(event.getName());
+			c.setPlace(event.getPlace());
+			leb2.add(c);//building eventBean list
 		}
 		
-		return leb;
+		return leb2;
 	}
 	
 	public List<PlaceBean> freePlaces(){
@@ -51,7 +51,7 @@ public class MapController {
 		return lpb;
 	}
 	
-	public void submitEvent(String name, String place, String description) throws EmptyFieldException {
+	public void submitEvent(String name, String place, String description) throws EmptyFieldException, DescriptionTooLongException {
 		if(name.equals("") || description.equals("")) {
 			throw new EmptyFieldException("fill both description and title field");
 		}
@@ -59,12 +59,8 @@ public class MapController {
 		SessionArtist instance = SessionArtist.getInstance();
 		artist=instance.getUsername();
 		EventDao ed = new EventDao();
-		try {
-			ed.newEvent(name, artist, description, place);
-		} catch (DescriptionTooLongException e) {
-			//implementare
-			e.printStackTrace();
-		}
+		ed.newEvent(name, artist, description, place);
+		
 		//is necessary to update de free value in the "places" table
 		PlaceDao pd = new PlaceDao();
 		pd.setBooked(place, artist);

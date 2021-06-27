@@ -6,7 +6,7 @@ import logic.exceptions.LoginException;
 import logic.applicationController.LoginController;
 import org.junit.Test;
 
-public class  Test12 {
+public class  test12 {
 
 	@Test
    public	void test() throws Throwable  {

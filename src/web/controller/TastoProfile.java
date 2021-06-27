@@ -1,18 +1,14 @@
 package web.controller;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import logic.utils.SessionArtist;
-import logic.utils.SessionSponsor;
 import logic.utils.SessionUser;
-import web.model.Employee;   
 
 /**
  * Servlet implementation class TastoProfile
@@ -20,7 +16,7 @@ import web.model.Employee;
 @WebServlet("/TastoProfile")
 public class TastoProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    String TipoUtente;
+    String tipoutente;
 
     public TastoProfile() {
         super();
@@ -40,7 +36,6 @@ public class TastoProfile extends HttpServlet {
 		
 
 		SessionArtist sa = SessionArtist.getInstance();
-		SessionSponsor ss = SessionSponsor.getInstance();
 		SessionUser su = SessionUser.getInstance();
 		
 		

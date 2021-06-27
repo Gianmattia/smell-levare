@@ -9,7 +9,7 @@ import logic.dao.EventDao;
 import logic.entity.Event;
 import org.junit.Test;
 
-public class Test13 {
+public class test13 {
 
 	@Test
  public	void test() throws Exception {

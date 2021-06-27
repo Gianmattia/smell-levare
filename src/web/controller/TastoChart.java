@@ -20,8 +20,8 @@ import web.model.Employee;
 @WebServlet("/TastoChart")
 public class TastoChart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    String tipoUtente;
-    String Artist;
+    String tipoutente;
+    String artist;
 
     public TastoChart() {
         super();
@@ -29,9 +29,9 @@ public class TastoChart extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Artist = request.getParameter("artist");
+		artist = request.getParameter("artist");
 		HttpSession session = request.getSession();
-		session.setAttribute("artist2", Artist);
+		session.setAttribute("artist2", artist);
 		RequestDispatcher dispatcher4 = request.getRequestDispatcher("/WEB-INF/views/Chart.jsp");
 	    dispatcher4.forward(request, response);
 

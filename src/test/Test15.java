@@ -12,7 +12,7 @@ import logic.bean.SponsorBean;
 
 import logic.exceptions.DuplicateUsernameException;
 import logic.bean.GeneralUserBean;
-public class Test15 {
+public class test15 {
 
 	@Test
 	public void chechdescriptionshow() throws Exception {

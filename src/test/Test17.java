@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class Test17 {
+public class test17 {
 
 	@Test
 	public void test() {
