@@ -67,7 +67,7 @@
      
     </h1>
     <!-- Primo artista  -->
-    <p style="margin-top: 300px; margin-left: 5px;"> <img src="https://www.focusjunior.it/content/uploads/2018/10/Michelangelo-Buonarroti.jpg"
+    <p style="margin-top: 300px; margin-left: 5px;"> <img  alt="" src="https://www.focusjunior.it/content/uploads/2018/10/Michelangelo-Buonarroti.jpg"
 
  
 

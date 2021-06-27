@@ -61,7 +61,7 @@
  
  <form action ="TastoMap" method = "get">
  <div class="container"   style="   margin-left: -2px; margin-top: 80px;">
-	 <img src="https://www.researchgate.net/profile/Francesco-Mensa/publication/330994606/figure/fig1/AS:724708081283073@1549795279179/Figura-125-Mappa-della-citta-di-Roma-I-punti-colorati-indicano-i-luoghi-visitati.png" alt="" style="width: 976x; height: 976px; margin-left: -2px; margin-top:50px; overflow:hidden; z-index:-1">
+	 <img alt="" src="https://www.researchgate.net/profile/Francesco-Mensa/publication/330994606/figure/fig1/AS:724708081283073@1549795279179/Figura-125-Mappa-della-citta-di-Roma-I-punti-colorati-indicano-i-luoghi-visitati.png" alt="" style="width: 976x; height: 976px; margin-left: -2px; margin-top:50px; overflow:hidden; z-index:-1">
  	
 <button id="amo" type="submit" name="action" value="Eur" onclick="myFunction(amo,yellow)" style="width: 60x; height: 60px; background-color: Transparent;border:none; margin-top: 750px; position:absolute; margin-left:-600px; float:left;"><img src="https://image.flaticon.com/icons/png/512/48/48703.png" style="width: 55x; height: 55px;" /></button>
 <button  id="amo2"  type="submit" name="action" value="Villa" onclick="myFunction(amo2,pink)" style="width: 60x; height: 60px; background-color: Transparent; border: none; margin-top: 470px; position:absolute; margin-left:-650px; float:left;"><img src="https://image.flaticon.com/icons/png/512/48/48703.png" style="width: 55x; height: 55px;" /></button>

@@ -78,7 +78,7 @@
 <!--              qui mettere if   -->
 <% if (!state.equals("no requests found") && show.getApprovedArtist().equals("no")){ %>
  <h1>Le tue Proposte:</h1>
- <p style="margin-top: 210px; margin-left: 5px;"> <img src="https://www.cosafarearoma.it/wp-content/uploads/2014/06/Trinity-College-Irish-Pub-Roma.jpg"
+ <p style="margin-top: 210px; margin-left: 5px;"> <img alt="" src="https://www.cosafarearoma.it/wp-content/uploads/2014/06/Trinity-College-Irish-Pub-Roma.jpg"
 
  
 

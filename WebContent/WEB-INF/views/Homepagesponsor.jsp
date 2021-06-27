@@ -59,7 +59,7 @@
     <!-- Primo artista  -->
     <p style="margin-top: 110px; margin-left: 5px;"><h2><%= username %></h2></p> 
    
-    <p style="margin-top: 200px; margin-left: 5px;"> <img src="https://www.cosafarearoma.it/wp-content/uploads/2014/06/Trinity-College-Irish-Pub-Roma.jpg"
+    <p style="margin-top: 200px; margin-left: 5px;"> <img alt="" src="https://www.cosafarearoma.it/wp-content/uploads/2014/06/Trinity-College-Irish-Pub-Roma.jpg"
 
  
 
