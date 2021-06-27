@@ -1,35 +1,42 @@
 package logic.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import logic.appcontroller.MapController;
 import logic.bean.PlaceBean;
+import logic.exceptions.DescriptionTooLongException;
 import logic.exceptions.EmptyFieldException;
 
 public class GraphicControllerMapArtist implements Initializable{
 	@FXML
-    private Button eurPlace;
+    private AnchorPane rootpane3;
+	
+	@FXML
+    private Button eurPlaceArt;
 
     @FXML
-    private Button pignetoPlace;
+    private Button pignetoPlaceArt;
 
     @FXML
-    private Button villaPlace;
+    private Button villaPlaceArt;
 
     @FXML
-    private Button statuarioPlace;
+    private Button statuarioPlaceArt;
 
     @FXML
-    private Label nameLabel;
+    private Label nameLabelArt;
 
     @FXML
     private Label indirizzoLabel;
@@ -85,20 +92,36 @@ public class GraphicControllerMapArtist implements Initializable{
     @FXML
     void submit(ActionEvent event) throws EmptyFieldException {
     	//this method creates a new event based on the information gathered
-    	mc.submitEvent(titleText.getText(), nameLabel.getText(), descriptionText.getText());
+    	try {
+			mc.submitEvent(titleText.getText(), nameLabelArt.getText(), descriptionText.getText());
+		} catch (EmptyFieldException e) {
+			
+			e.printStackTrace();
+		} catch (DescriptionTooLongException e) {
+			AnchorPane ap;
+			try {
+				ap = FXMLLoader.load(getClass().getResource("/logic/boundary/ErrorDescriptionWindow.fxml"));
+				rootpane3.getChildren().setAll(ap);
+			} catch (IOException e1) {
+				
+				e1.printStackTrace();
+			}	
+	    	
+	 		
+		}
     }
     
     
     void display(int pos) {
     	//setup
-    	nameLabel.setVisible(true);
+    	nameLabelArt.setVisible(true);
 		indirizzoLabel.setVisible(true);
 		capienzaLabel.setVisible(true);
 		titleText.setVisible(true);
 		descriptionText.setVisible(true);
 		submitButton.setVisible(true);
 		
-    	nameLabel.setText(list.get(pos).getName());
+    	nameLabelArt.setText(list.get(pos).getName());
     	Integer cap = list.get(pos).getCapacity();
     	capienzaLabel.setText(cap.toString());
     	indirizzoLabel.setText(list.get(pos).getAddress());
@@ -119,11 +142,11 @@ public class GraphicControllerMapArtist implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		//every button (and textbox and label) starts not visible
-		eurPlace.setVisible(false);
-		pignetoPlace.setVisible(false);
-		villaPlace.setVisible(false);
-		statuarioPlace.setVisible(false);
-		nameLabel.setVisible(false);
+		eurPlaceArt.setVisible(false);
+		pignetoPlaceArt.setVisible(false);
+		villaPlaceArt.setVisible(false);
+		statuarioPlaceArt.setVisible(false);
+		nameLabelArt.setVisible(false);
 		indirizzoLabel.setVisible(false);
 		capienzaLabel.setVisible(false);
 		titleText.setVisible(false);
@@ -131,16 +154,16 @@ public class GraphicControllerMapArtist implements Initializable{
 		submitButton.setVisible(false);
 		for(int i = 0; i < list.size(); i++) {
 			if (list.get(i).getName().equals("Eur")) {
-				eurPlace.setVisible(true);
+				eurPlaceArt.setVisible(true);
 			}
 			else if (list.get(i).getName().equals("Statuario")) {
-				statuarioPlace.setVisible(true);
+				statuarioPlaceArt.setVisible(true);
 			}
 			else if (list.get(i).getName().equals("Pigneto")) {
-				pignetoPlace.setVisible(true);
+				pignetoPlaceArt.setVisible(true);
 			}
 			else if (list.get(i).getName().equals("Villa")) {
-				villaPlace.setVisible(true);
+				villaPlaceArt.setVisible(true);
 			}
 		}
 	}

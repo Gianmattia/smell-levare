@@ -19,8 +19,8 @@ public class PlaceDao {
 		private static String driverClassName = "com.mysql.cj.jdbc.Driver";
 		
 		public List<Place> getFreePlacesDao() {
-			Statement stmt = null;
-	        Connection conn = null;
+			Statement stmtFrPl = null;
+	        Connection connFrPl = null;
 	        List<Place> freePlaces = new ArrayList<>();
 	        
 	        try {
@@ -28,38 +28,38 @@ public class PlaceDao {
 	            Class.forName(driverClassName);
 	            
 	         // STEP 3: apertura connessione
-	            conn = DriverManager.getConnection(dbUrl, user, pass);
+	            connFrPl = DriverManager.getConnection(dbUrl, user, pass);
 	            
 	            
 	        	
 	         // STEP 4.1: creazione ed esecuzione della query
-	            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	            stmtFrPl = connFrPl.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                    ResultSet.CONCUR_READ_ONLY);
 	            String sql = "SELECT * FROM places WHERE free = '" +""+"'";
-	            ResultSet rs = stmt.executeQuery(sql);
+	            ResultSet rsFrPl = stmtFrPl.executeQuery(sql);
 	            
-	            if (!rs.first()) { // rs not empty
+	            if (!rsFrPl.first()) { // rs not empty
 	            	return freePlaces;
 	            }
 	         // riposizionamento del cursore
-	            rs.first();
+	            rsFrPl.first();
 	            do {
 	            	// lettura colonne
-	            	String name  = rs.getString("name");
-	            	String address = rs.getString("address");
-	            	int capacity = rs.getInt("capacity");
+	            	String name  = rsFrPl.getString("name");
+	            	String address = rsFrPl.getString("address");
+	            	int capacity = rsFrPl.getInt("capacity");
 	            	
 	            	Place fPlace = new Place(name, capacity, address, null); //creates place entity
 	            	freePlaces.add(fPlace);
-	            }while(rs.next());
+	            }while(rsFrPl.next());
 	            
 	            
 	            
 	            
 	         // STEP 6: Clean-up dell'ambiente
-	            rs.close();
-	            stmt.close();
-	            conn.close();
+	            rsFrPl.close();
+	            stmtFrPl.close();
+	            connFrPl.close();
 	            
 	        } catch (SQLException se) {
 	            // Errore durante l'apertura della connessione
@@ -70,14 +70,14 @@ public class PlaceDao {
 	            
 	        } finally {
 	        	try {
-	                if (stmt != null)
-	                    stmt.close();
+	                if (stmtFrPl != null)
+	                    stmtFrPl.close();
 	            } catch (SQLException se2) {
 	            	se2.printStackTrace();
 	            }
 	            try {
-	                if (conn != null)
-	                    conn.close();
+	                if (connFrPl != null)
+	                    connFrPl.close();
 	            } catch (SQLException se) {
 	                se.printStackTrace();
 	            }
@@ -87,38 +87,38 @@ public class PlaceDao {
 		}
 		
 		public Place getPlace(String name) {
-			Statement stmt = null;
-	        Connection conn = null;
+			Statement stmtgp = null;
+	        Connection conngp = null;
 	        Place p= null;
 	        try {
 	        	//STEP 2: loading dinamico del driver mysql
 	            Class.forName(driverClassName);
 	            
 	         // STEP 3: apertura connessione
-	            conn = DriverManager.getConnection(dbUrl, user, pass);
+	            conngp = DriverManager.getConnection(dbUrl, user, pass);
 	            
 	         // STEP 4.1: creazione ed esecuzione della query
-	            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	            stmtgp = conngp.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                    ResultSet.CONCUR_READ_ONLY);
 	            String sql = "SELECT * FROM places WHERE name = '" +name+"'";
-	            ResultSet rs = stmt.executeQuery(sql);
+	            ResultSet rsgp = stmtgp.executeQuery(sql);
 	            
-	            if (!rs.first()) { // rs not empty
+	            if (!rsgp.first()) { // rs not empty
 	            	return null;
 	            }
 	         // riposizionamento del cursore
-	            rs.first();
+	            rsgp.first();
 	            
 	         // lettura colonne
-	            int capacity = rs.getInt("capacity");
-	            String address = rs.getString("address");
-	            String free = rs.getString("free");
+	            int capacity = rsgp.getInt("capacity");
+	            String address = rsgp.getString("address");
+	            String free = rsgp.getString("free");
 	         //create entity
 	            p = new Place(name, capacity, address, free);
 	            // STEP 6: Clean-up dell'ambiente
-	            rs.close();
-	            stmt.close();
-	            conn.close();
+	            rsgp.close();
+	            stmtgp.close();
+	            conngp.close();
 	        } catch (SQLException se) {
 	            // Errore durante l'apertura della connessione
 	            se.printStackTrace();
@@ -128,14 +128,14 @@ public class PlaceDao {
 	            
 	        } finally {
 	        	try {
-	                if (stmt != null)
-	                    stmt.close();
+	                if (stmtgp != null)
+	                    stmtgp.close();
 	            } catch (SQLException se2) {
 	            	se2.printStackTrace();
 	            }
 	            try {
-	                if (conn != null)
-	                    conn.close();
+	                if (conngp != null)
+	                    conngp.close();
 	            } catch (SQLException se) {
 	                se.printStackTrace();
 	            }
@@ -145,19 +145,19 @@ public class PlaceDao {
 		}
 	        
 	    public void setBooked(String place, String artist) {
-	    	Statement stmt = null;
-	        Connection conn = null;
+	    	Statement stmtsb = null;
+	        Connection connsb = null;
 	        
 	        try {
 	        	// STEP 2: loading dinamico del driver mysql
 	            Class.forName(driverClassName);
 	            
 	         // STEP 3: apertura connessione
-	            conn = DriverManager.getConnection(dbUrl, user, pass); 
+	            connsb = DriverManager.getConnection(dbUrl, user, pass); 
 	            
 	        	
 	         // STEP 4.1: creazione ed esecuzione della query
-	            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	            stmtsb = connsb.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                    ResultSet.CONCUR_READ_ONLY); 
 	            String sql = null;
 	            String vuota = "";
@@ -167,10 +167,10 @@ public class PlaceDao {
 	            else {
 	            	sql = "UPDATE Places SET free = '" + artist + "' WHERE name = '" + place + "';";
 	            }
-	            stmt.executeUpdate(sql);
+	            stmtsb.executeUpdate(sql);
 	         // STEP 6: Clean-up dell'ambiente
-	            stmt.close();
-	            conn.close();
+	            stmtsb.close();
+	            connsb.close();
 	        } catch (SQLException se) {
 	            // Errore durante l'apertura della connessione
 	            se.printStackTrace();
@@ -180,14 +180,14 @@ public class PlaceDao {
 	            
 	        } finally {
 	        	try {
-	                if (stmt != null)
-	                    stmt.close();
+	                if (stmtsb != null)
+	                    stmtsb.close();
 	            } catch (SQLException se2) {
 	            	se2.printStackTrace();
 	            }
 	            try {
-	                if (conn != null)
-	                    conn.close();
+	                if (connsb != null)
+	                    connsb.close();
 	            } catch (SQLException se) {
 	                se.printStackTrace();
 	            }

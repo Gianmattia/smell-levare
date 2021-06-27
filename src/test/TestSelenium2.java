@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class testselenium2 {
+public class Testselenium2 {
    public static void main(String[] args) {
 	   System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe");
 	   WebDriver driver = new ChromeDriver();
@@ -19,7 +19,6 @@ public class testselenium2 {
 	   driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("password");
        driver.findElement(By.xpath("/html/body/p[2]/input")).click();
 	   
-       String value = driver.findElement(By.xpath("/html/body/h1[4]/input")).getText();
      
 
 

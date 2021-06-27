@@ -30,45 +30,45 @@ public class RequestsDao {
     String apPa = "approvedPartner";
 	
 	public RequestedShow getQueuedShow() {
-		Statement stmt = null;
-        Connection conn = null;
-        RequestedShow result = null;
+		Statement stmtgq = null;
+        Connection conngq = null;
+        RequestedShow resultgq = null;
         try {
         	//STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass);
+            conngq = DriverManager.getConnection(dbUrl, user, pass);
             
         	SessionSponsor instance = SessionSponsor.getInstance();
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtgq = conngq.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM sponsored_shows_queue WHERE host = '" +instance.getUsername()+"'";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rsgq = stmtgq.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!rsgq.first()) { // rs not empty
             	return null;
             }
          // riposizionamento del cursore
-            rs.first();
+            rsgq.first();
             
          // lettura colonne
-            String host = rs.getString(h);
-            String title = rs.getString(t);
-            String partner = rs.getString(p);
-            String artist = rs.getString(ar);
-            String description = rs.getString(d);
-            String approvedArtist = rs.getString(apAr);
-            String approvedPartner = rs.getString(apPa);
+            String hostgq = rsgq.getString(h);
+            String titlegq = rsgq.getString(t);
+            String partnergq = rsgq.getString(p);
+            String artistgq = rsgq.getString(ar);
+            String descriptiongq = rsgq.getString(d);
+            String approvedArtistgq = rsgq.getString(apAr);
+            String approvedPartnergq = rsgq.getString(apPa);
             
          //create entity
-            result = new RequestedShow(host, title, partner, artist, description, approvedArtist, approvedPartner);
+            resultgq = new RequestedShow(hostgq, titlegq, partnergq, artistgq, descriptiongq, approvedArtistgq, approvedPartnergq);
             // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
+            rsgq.close();
+            stmtgq.close();
             
-            conn.close();
+            conngq.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
             se.printStackTrace();
@@ -78,60 +78,60 @@ public class RequestsDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtgq != null)
+                    stmtgq.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (conngq != null)
+                    conngq.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
         }
 		
-		return result;
+		return resultgq;
 	}
 	
 	public RequestedShow getQueuedShowByTitle(String title) {
-		Statement stmt = null;
-        Connection conn = null;
-        RequestedShow result = null;
+		Statement stmtqt = null;
+        Connection connqt = null;
+        RequestedShow resultqt = null;
         try {
         	//STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass);
+            connqt = DriverManager.getConnection(dbUrl, user, pass);
             
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtqt = connqt.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM sponsored_shows_queue WHERE title = '" +title+"'";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rsqt = stmtqt.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!rsqt.first()) { // rs not empty
             	return null;
             }
          // riposizionamento del cursore
-            rs.first();
+            rsqt.first();
             
          // lettura colonne
             
-            String host = rs.getString(h);
-            String partner = rs.getString(p);
-            String artist = rs.getString(ar);
-            String description = rs.getString(d);
-            String approvedArtist = rs.getString(apAr);
-            String approvedPartner = rs.getString(apPa);
+            String hostqt = rsqt.getString(h);
+            String partnerqt = rsqt.getString(p);
+            String artistqt = rsqt.getString(ar);
+            String descriptionqt = rsqt.getString(d);
+            String approvedArtistqt = rsqt.getString(apAr);
+            String approvedPartnerqt = rsqt.getString(apPa);
          //create entity
-            result = new RequestedShow(host, title, partner, artist, description, approvedArtist, approvedPartner);
+            resultqt = new RequestedShow(hostqt, title, partnerqt, artistqt, descriptionqt, approvedArtistqt, approvedPartnerqt);
             // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
+            rsqt.close();
+            stmtqt.close();
             
-            conn.close();
+            connqt.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
             se.printStackTrace();
@@ -141,25 +141,25 @@ public class RequestsDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtqt != null)
+                    stmtqt.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (connqt != null)
+                    connqt.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
         }
 		
-		return result;
+		return resultqt;
 	}
 	
 	public List<RequestedShow> getRequests(){
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmtgr = null;
+        Connection conngr = null;
         List<RequestedShow> lrs = new ArrayList<>();
         SessionArtist instance = SessionArtist.getInstance();
         
@@ -168,42 +168,42 @@ public class RequestsDao {
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass);
+            conngr = DriverManager.getConnection(dbUrl, user, pass);
             
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtgr = conngr.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM sponsored_shows_queue WHERE artist = '" +instance.getUsername()+"'";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rsgr = stmtgr.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!rsgr.first()) { // rs not empty
             	return lrs;
             }
          // riposizionamento del cursore
-            rs.first();
+            rsgr.first();
             do {
             	// lettura colonne
-            	 String host = rs.getString(h);
-                 String title = rs.getString(t);
-                 String partner = rs.getString(p);
-                 String artist = rs.getString(ar);
-                 String description = rs.getString(d);
-                 String approvedArtist = rs.getString(apAr);
-                 String approvedPartner = rs.getString(apPa);
+            	 String host = rsgr.getString(h);
+                 String title = rsgr.getString(t);
+                 String partner = rsgr.getString(p);
+                 String artist = rsgr.getString(ar);
+                 String description = rsgr.getString(d);
+                 String approvedArtist = rsgr.getString(apAr);
+                 String approvedPartner = rsgr.getString(apPa);
             	
             	RequestedShow rqsh = new RequestedShow(host, title, partner, artist, description, approvedArtist, approvedPartner);
             	lrs.add(rqsh);
-            }while(rs.next());
+            }while(rsgr.next());
             
             
             
             
          // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
-            conn.close();
+            rsgr.close();
+            stmtgr.close();
+            conngr.close();
             
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
@@ -214,14 +214,14 @@ public class RequestsDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtgr != null)
+                    stmtgr.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (conngr != null)
+                    conngr.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
@@ -231,26 +231,26 @@ public class RequestsDao {
 	}
 	
 	public void updateApprovedArtist(String title, String state) {
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmtua = null;
+        Connection connua = null;
         
         try {
         	// STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass); 
+            connua = DriverManager.getConnection(dbUrl, user, pass); 
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtua = connua.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY); 
             String sql = "UPDATE sponsored_shows_queue SET approvedArtist = '" + state + "' WHERE title = '" + title + "';";
-        	stmt.executeUpdate(sql);
+        	stmtua.executeUpdate(sql);
             
          // STEP 6: Clean-up dell'ambiente
-            stmt.close();
-            conn.close();
+            stmtua.close();
+            connua.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
             se.printStackTrace();
@@ -260,14 +260,14 @@ public class RequestsDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtua != null)
+                    stmtua.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (connua != null)
+                    connua.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
@@ -276,27 +276,27 @@ public class RequestsDao {
     }
 	
 	public void deleteRequest() {
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmtdr = null;
+        Connection conndr = null;
         
         try {
         	// STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass); 
+            conndr = DriverManager.getConnection(dbUrl, user, pass); 
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtdr = conndr.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY); 
         	SessionUser su = SessionUser.getInstance();
             String host = su.getUsername();
             String sql = "DELETE FROM sponsored_shows_queue WHERE host = '" +host+"'";
-            stmt.executeUpdate(sql);
+            stmtdr.executeUpdate(sql);
          // STEP 6: Clean-up dell'ambiente
-            stmt.close();
-            conn.close();
+            stmtdr.close();
+            conndr.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
             se.printStackTrace();
@@ -306,14 +306,14 @@ public class RequestsDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtdr != null)
+                    stmtdr.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (conndr != null)
+                    conndr.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }

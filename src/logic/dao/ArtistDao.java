@@ -25,7 +25,7 @@ public class ArtistDao {
 	public Artist getArtist(String name) {
 		Statement stmt = null;
         Connection conn = null;
-        Artist a= null;
+        Artist art= null;
         
         try {
         	//STEP 2: loading dinamico del driver mysql
@@ -39,24 +39,24 @@ public class ArtistDao {
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM artists WHERE username = '" +name+"'";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rset = stmt.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!rset.first()) { // rs not empty
             	return null;
             }
          // riposizionamento del cursore
-            rs.first();
+            rset.first();
             
          // lettura colonne
-            String usrnm = rs.getString(un);
-            String psswrd = rs.getString(ps);
-            String email = rs.getString(em);
-            String description = rs.getString(ds);
-            String talent = rs.getString(tl);
+            String usrnm = rset.getString(un);
+            String psswrd = rset.getString(ps);
+            String email = rset.getString(em);
+            String description = rset.getString(ds);
+            String talent = rset.getString(tl);
          //create entity
-            a = new Artist(usrnm, psswrd, email, description, talent);
+            art = new Artist(usrnm, psswrd, email, description, talent);
             // STEP 6: Clean-up dell'ambiente
-            rs.close();
+            rset.close();
             stmt.close();
             conn.close();
         } catch (SQLException se) {
@@ -80,50 +80,50 @@ public class ArtistDao {
                 se.printStackTrace();
             }
         }
-		return a;
+		return art;
         	
 	}
 	
 	public Artist artistLogin(String username, String password) {
-		Statement stmt = null;
-        Connection conn = null;
-        Artist a= null;
+		Statement stm = null;
+        Connection con = null;
+        Artist artist= null;
         try {
         	//STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass);
+            con = DriverManager.getConnection(dbUrl, user, pass);
             
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM artists WHERE username = '" +username+"'";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rslt = stm.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!rslt.first()) { // rs not empty
             	return null;
             }
          // riposizionamento del cursore
-            rs.first();
+            rslt.first();
             
          // lettura colonne
-            String usrnm = rs.getString(un);
-            String psswrd = rs.getString(ps);
-            String email = rs.getString(em);
-            String description = rs.getString(ds);
-            String talent = rs.getString(tl);
+            String usrnm = rslt.getString(un);
+            String psswrd = rslt.getString(ps);
+            String email = rslt.getString(em);
+            String description = rslt.getString(ds);
+            String talent = rslt.getString(tl);
             
             if (!usrnm.equals(username)|| !psswrd.equals(password)) {
             	//controllo 
             	return null;
             }
          //create entity
-            a = new Artist(usrnm, psswrd, email, description, talent);
+            artist = new Artist(usrnm, psswrd, email, description, talent);
             // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
-            conn.close();
+            rslt.close();
+            stm.close();
+            con.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
             se.printStackTrace();
@@ -133,54 +133,54 @@ public class ArtistDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stm != null)
+                    stm.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
         }
-		return a;
+		return artist;
 	}
 	
 	public void updateArtist(String artist, String email, String talent, String description) {
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmtn = null;
+        Connection connect = null;
         
         try {
         	// STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass); 
+            connect = DriverManager.getConnection(dbUrl, user, pass); 
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtn = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY); 
             String where = "' WHERE username = '";
             
             if(!email.equals("")) {
             	String sql = "UPDATE artists SET email = '" + email + where + artist + "';";
-            	stmt.executeUpdate(sql);
+            	stmtn.executeUpdate(sql);
             }
             if(!talent.equals("")) {
             	String sql1 = "UPDATE artists SET talent = '" + talent + where + artist + "';";
-            	stmt.executeUpdate(sql1);
+            	stmtn.executeUpdate(sql1);
             }
             if(!description.equals("")) {
             	String sql2 = "UPDATE artists SET description = '" + description + where + artist + "';";
-            	stmt.executeUpdate(sql2);
+            	stmtn.executeUpdate(sql2);
             }
             
          // STEP 6: Clean-up dell'ambiente
-            stmt.close();
-            conn.close();
+            stmtn.close();
+            connect.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
             se.printStackTrace();
@@ -190,14 +190,14 @@ public class ArtistDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtn != null)
+                    stmtn.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (connect != null)
+                    connect.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
@@ -206,8 +206,8 @@ public class ArtistDao {
     }
 	
 	public List<Artist> getArtists(){
-		Statement stmt = null;
-        Connection conn = null;
+		Statement s = null;
+        Connection c = null;
         List<Artist> artists = new ArrayList<>();
         
         try {
@@ -215,40 +215,40 @@ public class ArtistDao {
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass);
+            c = DriverManager.getConnection(dbUrl, user, pass);
             
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            s = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM artists";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet resset = s.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!resset.first()) { // rs not empty
             	return artists;
             }
          // riposizionamento del cursore
-            rs.first();
+            resset.first();
             do {
             	// lettura colonne
-            	String name  = rs.getString("username");
-            	String password = rs.getString("password");
-            	String email = rs.getString("email");
-            	String description = rs.getString("description");
-            	String talent = rs.getString("talent");
+            	String name  = resset.getString("username");
+            	String password = resset.getString("password");
+            	String email = resset.getString("email");
+            	String description = resset.getString("description");
+            	String talent = resset.getString("talent");
             	
             	Artist art = new Artist(name, password, email, description, talent);
             	artists.add(art);
-            }while(rs.next());
+            }while(resset.next());
             
             
             
             
          // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
-            conn.close();
+            resset.close();
+            s.close();
+            c.close();
             
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
@@ -259,14 +259,14 @@ public class ArtistDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (s != null)
+                    s.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (c != null)
+                    c.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
@@ -278,26 +278,26 @@ public class ArtistDao {
 public void registerArtist(String username, String password, String email, String description, String talent) {
 		
 		// STEP 1: dichiarazioni
-        Statement stmt = null;
-        Connection conn = null;
+        Statement stmtReg = null;
+        Connection connReg = null;
         
         try {
         	// STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass); 
+            connReg = DriverManager.getConnection(dbUrl, user, pass); 
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtReg = connReg.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY); 
         	
             String sql = "INSERT INTO artists (username, password, email, description, talent) VALUES ('" +username+"','"+password+"','"+email+"','"+description+"','"+talent+"')";
-            stmt.executeUpdate(sql);
+            stmtReg.executeUpdate(sql);
          // STEP 6: Clean-up dell'ambiente
-            stmt.close();
-            conn.close();
+            stmtReg.close();
+            connReg.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
             se.printStackTrace();
@@ -307,14 +307,14 @@ public void registerArtist(String username, String password, String email, Strin
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtReg != null)
+                    stmtReg.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (connReg != null)
+                    connReg.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }

@@ -1,51 +1,51 @@
 package logic.bean;
 
 public class SponsorBean {
-	private String username;
-	private String password;
-	private String activity;
-	private String capacity;
-	private String description;
+	private String usernameBean;
+	private String passwordBean;
+	private String activityBean;
+	private String capacityBean;
+	private String descriptionBean;
 	
 
 	public String getUsername() {
-		return username;
+		return usernameBean;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.usernameBean = username;
 	}
 
 	public String getPassword() {
-		return password;
+		return passwordBean;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.passwordBean = password;
 	}
 
 	public String getActivity() {
-		return activity;
+		return activityBean;
 	}
 
 	public void setActivity(String activity) {
-		this.activity = activity;
+		this.activityBean = activity;
 	}
 
 	public String getCapacity() {
-		return capacity;
+		return capacityBean;
 	}
 
 	public void setCapacity(String capacity) {
-		this.capacity = capacity;
+		this.capacityBean = capacity;
 	}
 
 	public String getDescription() {
-		return description;
+		return descriptionBean;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.descriptionBean = description;
 	}
 	
 }

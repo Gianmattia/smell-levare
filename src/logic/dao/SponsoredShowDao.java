@@ -22,42 +22,42 @@ public class SponsoredShowDao {
 	private static String driverClassName = "com.mysql.cj.jdbc.Driver";
 	
 	public SponsoredShow getSponsoredShow(String title) {
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmtgss = null;
+        Connection conngss = null;
         SponsoredShow result = null;
         try {
         	//STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass);
+            conngss = DriverManager.getConnection(dbUrl, user, pass);
             
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtgss = conngss.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM sponsored_shows WHERE title = '" +title+"'";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rsgss = stmtgss.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!rsgss.first()) { // rs not empty
             	return null;
             }
          // riposizionamento del cursore
-            rs.first();
+            rsgss.first();
             
          // lettura colonne
-            String sponsor = rs.getString("sponsor");
-            String partner = rs.getString("partner");
-            String artist = rs.getString("artist");
-            String description = rs.getString("description");
-            String location = rs.getString("location");
-            String capacity = rs.getString("capacity");
+            String sponsor = rsgss.getString("sponsor");
+            String partner = rsgss.getString("partner");
+            String artist = rsgss.getString("artist");
+            String description = rsgss.getString("description");
+            String location = rsgss.getString("location");
+            String capacity = rsgss.getString("capacity");
             
          //create entity
             result = new SponsoredShow(title, artist, sponsor, location, capacity, partner, description);
             // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
-            conn.close();
+            rsgss.close();
+            stmtgss.close();
+            conngss.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
             se.printStackTrace();
@@ -67,14 +67,14 @@ public class SponsoredShowDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtgss != null)
+                    stmtgss.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (conngss != null)
+                    conngss.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
@@ -84,26 +84,26 @@ public class SponsoredShowDao {
 	}
 		
 	public void hostSponsoredShow(SponsoredShow ss) throws DescriptionTooLongException {
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmthss = null;
+        Connection connhss = null;
         
         try {
         	// STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass); 
+            connhss = DriverManager.getConnection(dbUrl, user, pass); 
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmthss = connhss.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY); 
         	
             String sql = "INSERT INTO sponsored_shows (title, artist, sponsor, location, capacity, partner, description) VALUES ('" +ss.getTitle()+"','"+ss.getArtist()+"','"+ss.getSponsor()+"','"+ss.getLocation()+"','"+ss.getCapacity()+"','"+ss.getPartner()+"','"+ss.getDescription()+"')";
-            stmt.executeUpdate(sql);
+            stmthss.executeUpdate(sql);
          // STEP 6: Clean-up dell'ambiente
-            stmt.close();
-            conn.close();
+            stmthss.close();
+            connhss.close();
         } catch (SQLException se) {
         	throw new DescriptionTooLongException("descrizione troppo lunga");
         } catch (Exception e) {
@@ -112,14 +112,14 @@ public class SponsoredShowDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmthss != null)
+                    stmthss.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (connhss != null)
+                    connhss.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
@@ -128,27 +128,27 @@ public class SponsoredShowDao {
 	}
 	
 	public void dismissShow() {
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmtdss = null;
+        Connection conndss = null;
         
         try {
         	// STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass); 
+            conndss = DriverManager.getConnection(dbUrl, user, pass); 
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtdss = conndss.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY); 
         	SessionUser su = SessionUser.getInstance();
             String host = su.getUsername();
             String sql = "DELETE FROM sponsored_shows WHERE sponsor = '" +host+"'";
-            stmt.executeUpdate(sql);
+            stmtdss.executeUpdate(sql);
          // STEP 6: Clean-up dell'ambiente
-            stmt.close();
-            conn.close();
+            stmtdss.close();
+            conndss.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
             se.printStackTrace();
@@ -158,14 +158,14 @@ public class SponsoredShowDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtdss != null)
+                    stmtdss.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (conndss != null)
+                    conndss.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
@@ -174,8 +174,8 @@ public class SponsoredShowDao {
 	}
 	
 	public List<SponsoredShow> getSponsoredShows(){
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmtSponsored = null;
+        Connection connSponsored = null;
         List<SponsoredShow> shows = new ArrayList<>();
         
         try {
@@ -183,42 +183,42 @@ public class SponsoredShowDao {
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass);
+            connSponsored = DriverManager.getConnection(dbUrl, user, pass);
             
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtSponsored = connSponsored.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM sponsored_shows";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rsSponsored = stmtSponsored.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!rsSponsored.first()) { // rs not empty
             	return shows;
             }
          // riposizionamento del cursore
-            rs.first();
+            rsSponsored.first();
             do {
             	// lettura colonne
-            	String title  = rs.getString("title");
-            	String artist = rs.getString("artist");
-            	String sponsor = rs.getString("sponsor");
-            	String location = rs.getString("location");
-            	String capacity = rs.getString("capacity");
-            	String partner = rs.getString("partner");
-            	String description = rs.getString("description");
+            	String title  = rsSponsored.getString("title");
+            	String artist = rsSponsored.getString("artist");
+            	String sponsor = rsSponsored.getString("sponsor");
+            	String location = rsSponsored.getString("location");
+            	String capacity = rsSponsored.getString("capacity");
+            	String partner = rsSponsored.getString("partner");
+            	String description = rsSponsored.getString("description");
             	
             	SponsoredShow ss = new SponsoredShow(title, artist, sponsor, location, capacity, partner, description);
             	shows.add(ss);
-            }while(rs.next());
+            }while(rsSponsored.next());
             
             
             
             
          // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
-            conn.close();
+            rsSponsored.close();
+            stmtSponsored.close();
+            connSponsored.close();
             
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
@@ -229,14 +229,14 @@ public class SponsoredShowDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtSponsored != null)
+                    stmtSponsored.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (connSponsored != null)
+                    connSponsored.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }

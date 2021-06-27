@@ -20,41 +20,41 @@ public class ReviewDao {
 	private static String driverClassName = "com.mysql.cj.jdbc.Driver";
 	
 	public List<Review> getReview(String artist) {
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmtRev = null;
+        Connection connRev = null;
         List<Review> r= new ArrayList<>();
         try {
         	//STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass);
+            connRev = DriverManager.getConnection(dbUrl, user, pass);
             
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtRev = connRev.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM reviews WHERE artist = '" +artist+"'";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rsRev = stmtRev.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!rsRev.first()) { // rs not empty
             	return r;
             }
          // riposizionamento del cursore
-            rs.first();
+            rsRev.first();
             do {
             	// lettura colonne
-            	String author  = rs.getString("author");
-            	String art = rs.getString("artist");
-            	String review = rs.getString("review");
+            	String author  = rsRev.getString("author");
+            	String art = rsRev.getString("artist");
+            	String review = rsRev.getString("review");
             	
             	Review rev = new Review(author, art, review); //creates review entity
             	r.add(rev);
-            }while(rs.next());
+            }while(rsRev.next());
             
          // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
-            conn.close();
+            rsRev.close();
+            stmtRev.close();
+            connRev.close();
             
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
@@ -65,14 +65,14 @@ public class ReviewDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtRev != null)
+                    stmtRev.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (connRev != null)
+                    connRev.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
@@ -84,25 +84,25 @@ public class ReviewDao {
 	
 	public void submitReview(String author, String artist, String review) throws DuplicateReviewException {
 		// STEP 1: dichiarazioni
-        Statement stmt = null;
-        Connection conn = null;
+        Statement stmtsr = null;
+        Connection connsr = null;
         
         try {
         	// STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass); 
+            connsr = DriverManager.getConnection(dbUrl, user, pass); 
             
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtsr = connsr.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY); 
         	
             String sql = "INSERT INTO reviews (author, artist, review) VALUES ('" +author+"','"+artist+"','"+review+"')";
-            stmt.executeUpdate(sql);
+            stmtsr.executeUpdate(sql);
          // STEP 6: Clean-up dell'ambiente
-            stmt.close();
-            conn.close();
+            stmtsr.close();
+            connsr.close();
         } catch (SQLException se) {
             throw new DuplicateReviewException("artist already reviewed");
         } catch (Exception e) {
@@ -111,14 +111,14 @@ public class ReviewDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtsr != null)
+                    stmtsr.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (connsr != null)
+                    connsr.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }

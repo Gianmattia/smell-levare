@@ -2,68 +2,68 @@ package logic.bean;
 
 public class SponsoredShowBean {
 	
-	String title;
-	String artist;
-	String sponsor;
-	String location;
-	String capacity;
-	String partner;
-	String description;
+	String titleBean;
+	String artistBean;
+	String sponsorBean;
+	String locationBean;
+	String capacityBean;
+	String partnerBean;
+	String descriptionBean;
 	
 
 	public String getTitle() {
-		return title;
+		return titleBean;
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		this.titleBean = title;
 	}
 
 	public String getArtist() {
-		return artist;
+		return artistBean;
 	}
 
 	public void setArtist(String artist) {
-		this.artist = artist;
+		this.artistBean = artist;
 	}
 
 	public String getSponsor() {
-		return sponsor;
+		return sponsorBean;
 	}
 
 	public void setSponsor(String sponsor) {
-		this.sponsor = sponsor;
+		this.sponsorBean = sponsor;
 	}
 
 	public String getLocation() {
-		return location;
+		return locationBean;
 	}
 
 	public void setLocation(String location) {
-		this.location = location;
+		this.locationBean = location;
 	}
 
 	public String getCapacity() {
-		return capacity;
+		return capacityBean;
 	}
 
 	public void setCapacity(String capacity) {
-		this.capacity = capacity;
+		this.capacityBean = capacity;
 	}
 
 	public String getPartner() {
-		return partner;
+		return partnerBean;
 	}
 
 	public void setPartner(String partner) {
-		this.partner = partner;
+		this.partnerBean = partner;
 	}
 
 	public String getDescription() {
-		return description;
+		return descriptionBean;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.descriptionBean = description;
 	}
 }

@@ -1,40 +1,40 @@
 package logic.bean;
 
 public class EventBean {
-	private String name;
-	private String artist;
-	private String description;
-	private String place;
+	private String nameBean;
+	private String artistBean;
+	private String descriptionBean;
+	private String placeBean;
 	
 	public String getName() {
-		return name;
+		return nameBean;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.nameBean = name;
 	}
 
 	public String getArtist() {
-		return artist;
+		return artistBean;
 	}
 
 	public void setArtist(String artist) {
-		this.artist = artist;
+		this.artistBean = artist;
 	}
 
 	public String getDescription() {
-		return description;
+		return descriptionBean;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.descriptionBean = description;
 	}
 
 	public String getPlace() {
-		return place;
+		return placeBean;
 	}
 
 	public void setPlace(String place) {
-		this.place = place;
+		this.placeBean = place;
 	}
 }

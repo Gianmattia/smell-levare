@@ -9,10 +9,10 @@ import logic.dao.EventDao;
 import logic.entity.Event;
 import org.junit.Test;
 
-public class test13 {
+public class Test13 {
 
 	@Test
- public	void test() throws Exception {
+ public	void test() {
 			
 		EventDao eventdao = new EventDao();
   Event    check = eventdao.getEvent("Flavietta");

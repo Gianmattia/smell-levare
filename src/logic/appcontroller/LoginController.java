@@ -15,7 +15,7 @@ import logic.utils.SessionUser;
 
 public class LoginController {
 	
-	public GeneralUserBean login(String username, String password) throws Exception{
+	public GeneralUserBean login(String username, String password){
 		
 		GeneralUserDao gud = new GeneralUserDao();
 		GeneralUser result = gud.login(username, password); //calls the dao login
@@ -59,7 +59,7 @@ public class LoginController {
 	
 	
 	
-	public void setupSessionUser(int id, String username, String password) throws Exception {
+	public void setupSessionUser(int id, String username, String password) throws LoginException{
 		//ho deciso di usare session user per utenti, artisti e sponsor!
 		SessionUser su = SessionUser.getInstance();
 		if(id==1) {this.login(username, password);}

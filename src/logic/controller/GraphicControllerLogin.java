@@ -3,6 +3,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+import javax.security.auth.login.LoginException;
 
 import logic.appcontroller.LoginController;
 import javafx.event.ActionEvent;
@@ -45,7 +46,7 @@ public class GraphicControllerLogin{
 
 	  
 	 @FXML
-	 public void loginClicked(ActionEvent event) throws Exception {
+	 public void loginClicked(ActionEvent event) throws LoginException, IOException{
 
 		 if (identity==0) {
 			 //the user did not select any identity, implement an exception

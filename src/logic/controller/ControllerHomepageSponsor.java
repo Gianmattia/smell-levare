@@ -15,21 +15,21 @@ import logic.appcontroller.SessionSponsorController;
 import logic.utils.SessionSponsor;
 
 public class ControllerHomepageSponsor implements Initializable{
+	
+    @FXML
+    private AnchorPane rootpaneHPS;
+    
+    @FXML
+    private Button dismissButtonHPS;
 
     @FXML
-    private AnchorPane rootpane7;
+    private Label titleLabelHPS;
+    
+    @FXML
+    private Button editButtonHPS;
 
     @FXML
-    private Button dismissButton;
-
-    @FXML
-    private Label titleLabel;
-
-    @FXML
-    private Button editButton;
-
-    @FXML
-    private Label username;
+    private Label usernameHPS;
 
     @FXML
     private Label activity;
@@ -80,7 +80,7 @@ public class ControllerHomepageSponsor implements Initializable{
 
     @FXML
     void saveClick(ActionEvent event) {
-
+    	//dummy
     }
 
 	@Override
@@ -95,7 +95,7 @@ public class ControllerHomepageSponsor implements Initializable{
 		SessionSponsorController ssc = new SessionSponsorController();
 		ssc.sessionSponsorSetup();
 		SessionSponsor ss = SessionSponsor.getInstance();
-		username.setText(ss.getUsername());
+		usernameHPS.setText(ss.getUsername());
 		activity.setText(ss.getActivity());
 		capacity.setText(ss.getCapacity());
 		description.setText(ss.getDescription());

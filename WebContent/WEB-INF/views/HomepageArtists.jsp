@@ -3,12 +3,18 @@
 
 <%@page import = "logic.applicationController.SessionArtistController"  %>
 <%@page import = "logic.utils.SessionArtist"  %>
+<%@page import = "logic.applicationController.HomepageArtistController"  %>
+<%@page import = "logic.bean.EventBean" %>
+
 
 <% 
+    HomepageArtistController hac = new HomepageArtistController();
+    
 	SessionArtistController sac = new SessionArtistController();
 	sac.sessionArtistSetup();
 	SessionArtist instanceA = SessionArtist.getInstance();
     String username = instanceA.getUsername();
+    EventBean eventname = hac.getLiveEventWeb();
 
  %>
 
@@ -107,8 +113,11 @@
       <button name="Informazioni" style="height: 35px; width: 90px; margin-buttom:200px; margin-left: 70px; background-color: #4d4d4d;">Modifica
         foto</button></form>
     <h2 style="margin-left:950px;margin-top: -300px;">Le tue prenotazioni:</h2>
+      
+    
     <%if ((String)session.getAttribute("Hosting") != "noshow"){ %>
     <form action="Homepage" method="get">
+      <h3 style="margin-left:960px;margin-top: 30px;"><%=eventname.getName() %></h3>
     <button name="Informazioni" style="height: 60px; width: 120px; margin-left: 980px; background-color: #4d4d4d;">Dismiss</button>
     </form>
     <% }%>	

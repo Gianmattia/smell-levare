@@ -38,14 +38,14 @@ public class TastoChart extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SessionArtist sa = SessionArtist.getInstance();
-		SessionSponsor ss = SessionSponsor.getInstance();
+		SessionArtist sar = SessionArtist.getInstance();
+		SessionSponsor ssp = SessionSponsor.getInstance();
 		
-	    if (sa.getUsername()!=null){
+	    if (sar.getUsername()!=null){
 	    RequestDispatcher dispatcher2 = request.getRequestDispatcher("/WEB-INF/views/ChartPerformer.jsp");
 		dispatcher2.forward(request, response);
 	    }
-	    if (ss.getUsername()!=null){
+	    if (ssp.getUsername()!=null){
 		    RequestDispatcher dispatcher3 = request.getRequestDispatcher("/WEB-INF/views/Homepagesponsor.jsp");
 			dispatcher3.forward(request, response); 
 	    }

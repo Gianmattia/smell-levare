@@ -1,7 +1,5 @@
 package logic.controller;
 
-
-
 import java.net.URL;
 
 import java.util.Collections;
@@ -16,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import logic.appcontroller.MapController;
 import logic.bean.EventBean;
-import logic.entity.Event;
+
 
 public class ControllerHomepage2 implements Initializable{
 	@FXML
@@ -43,10 +41,7 @@ public class ControllerHomepage2 implements Initializable{
     MapController mc = new MapController();
 	List<EventBean> list = mc.liveEventsList();
 	int dim = list.size();
-    //3 random entity are created among the live events
-    Event first;
-    Event second;
-    Event third;
+   
 
     @FXML
     void caricainfo(MouseEvent event) {
@@ -71,17 +66,17 @@ public class ControllerHomepage2 implements Initializable{
 			if (i==0) {
 				nameLabel1.setText(list.get(i).getName());
 				descriptionLabel1.setText(list.get(i).getDescription());
-				first = new Event(list.get(i).getName(), list.get(i).getArtist(), list.get(i).getDescription(),list.get(i).getPlace());
+				
 				}
 			else if (i==1) {
 				nameLabel2.setText(list.get(i).getName());
 				descriptionLabel2.setText(list.get(i).getDescription());
-				second=new Event(list.get(i).getName(), list.get(i).getArtist(), list.get(i).getDescription(),list.get(i).getPlace());
+				
 				}
 			else if (i==2) {
 				nameLabel3.setText(list.get(i).getName());
 				descriptionLabel3.setText(list.get(i).getDescription());
-				third=new Event(list.get(i).getName(), list.get(i).getArtist(), list.get(i).getDescription(),list.get(i).getPlace());
+				
 				}
 		}
 	}

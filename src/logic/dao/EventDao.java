@@ -21,8 +21,8 @@ public class EventDao {
 			private static String driverClassName = "com.mysql.cj.jdbc.Driver";
 			
 			public List<Event> getLiveEvents() {
-				Statement stmt = null;
-		        Connection conn = null;
+				Statement stmtLive = null;
+		        Connection connLive = null;
 		        List<Event> liveEvents = new ArrayList<>();
 		        
 		        try {
@@ -30,40 +30,40 @@ public class EventDao {
 		            Class.forName(driverClassName);
 		            
 		         // STEP 3: apertura connessione
-		            conn = DriverManager.getConnection(dbUrl, user, pass);
+		            connLive = DriverManager.getConnection(dbUrl, user, pass);
 		            
 		            
 		        	
 		         // STEP 4.1: creazione ed esecuzione della query
-		            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+		            stmtLive = connLive.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 		                    ResultSet.CONCUR_READ_ONLY);
 		            String sql = "SELECT * FROM events"; 
-		            ResultSet rs = stmt.executeQuery(sql);
+		            ResultSet rsLive = stmtLive.executeQuery(sql);
 		            
-		            if (!rs.first()) { // rs not empty
+		            if (!rsLive.first()) { // rs not empty
 		            	
 		            	return liveEvents;
 		            }
 		         // riposizionamento del cursore
-		            rs.first();
+		            rsLive.first();
 		            do {
 		            	// lettura colonne
-		            	String name  = rs.getString("name");
-		            	String place = rs.getString("place");
-		            	String description = rs.getString("description");
-		            	String artist = rs.getString("artist");
+		            	String name  = rsLive.getString("name");
+		            	String place = rsLive.getString("place");
+		            	String description = rsLive.getString("description");
+		            	String artist = rsLive.getString("artist");
 		            	Event liveEv = new Event(name, artist, description, place); //creates event entity
 		            	liveEvents.add(liveEv);
 		            	
-		            }while(rs.next());
+		            }while(rsLive.next());
 		            
 		            
 		            
 		            
 		         // STEP 6: Clean-up dell'ambiente
-		            rs.close();
-		            stmt.close();
-		            conn.close();
+		            rsLive.close();
+		            stmtLive.close();
+		            connLive.close();
 		            
 		        } catch (SQLException se) {
 		            // Errore durante l'apertura della connessione
@@ -74,14 +74,14 @@ public class EventDao {
 		            
 		        } finally {
 		        	try {
-		                if (stmt != null)
-		                    stmt.close();
+		                if (stmtLive != null)
+		                    stmtLive.close();
 		            } catch (SQLException se2) {
 		            	se2.printStackTrace();
 		            }
 		            try {
-		                if (conn != null)
-		                    conn.close();
+		                if (connLive != null)
+		                    connLive.close();
 		            } catch (SQLException se) {
 		                se.printStackTrace();
 		            }
@@ -91,26 +91,26 @@ public class EventDao {
 			}
 			
 			public void newEvent(String name, String artist, String description, String place) throws DescriptionTooLongException{
-				Statement stmt = null;
-		        Connection conn = null;
+				Statement stmtNew = null;
+		        Connection connNew = null;
 		        
 		        try {
 		        	// STEP 2: loading dinamico del driver mysql
 		            Class.forName(driverClassName);
 		            
 		         // STEP 3: apertura connessione
-		            conn = DriverManager.getConnection(dbUrl, user, pass); 
+		            connNew = DriverManager.getConnection(dbUrl, user, pass); 
 		            
 		        	
 		         // STEP 4.1: creazione ed esecuzione della query
-		            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+		            stmtNew = connNew.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 		                    ResultSet.CONCUR_READ_ONLY); 
 		        	
 		            String sql = "INSERT INTO events (name, artist, description, place) VALUES ('" +name+"','"+artist+"','"+description+"','"+place+"')";
-		            stmt.executeUpdate(sql);
+		            stmtNew.executeUpdate(sql);
 		         // STEP 6: Clean-up dell'ambiente
-		            stmt.close();
-		            conn.close();
+		            stmtNew.close();
+		            connNew.close();
 		        } catch (SQLException se) {
 		            throw new DescriptionTooLongException("descrizione troppo lunga");
 		        } catch (Exception e) {
@@ -119,14 +119,14 @@ public class EventDao {
 		            
 		        } finally {
 		        	try {
-		                if (stmt != null)
-		                    stmt.close();
+		                if (stmtNew != null)
+		                    stmtNew.close();
 		            } catch (SQLException se2) {
 		            	se2.printStackTrace();
 		            }
 		            try {
-		                if (conn != null)
-		                    conn.close();
+		                if (connNew != null)
+		                    connNew.close();
 		            } catch (SQLException se) {
 		                se.printStackTrace();
 		            }
@@ -135,26 +135,26 @@ public class EventDao {
 			}
 			
 			public void deleteLiveEvent(String title) {
-				Statement stmt = null;
-		        Connection conn = null;
+				Statement stmtDel = null;
+		        Connection connDel = null;
 		        
 		        try {
 		        	// STEP 2: loading dinamico del driver mysql
 		            Class.forName(driverClassName);
 		            
 		         // STEP 3: apertura connessione
-		            conn = DriverManager.getConnection(dbUrl, user, pass); 
+		            connDel = DriverManager.getConnection(dbUrl, user, pass); 
 		            
 		        	
 		         // STEP 4.1: creazione ed esecuzione della query
-		            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+		            stmtDel = connDel.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 		                    ResultSet.CONCUR_READ_ONLY); 
 		        	
 		            String sql = "DELETE FROM events WHERE name = '" +title+"'";
-		            stmt.executeUpdate(sql);
+		            stmtDel.executeUpdate(sql);
 		         // STEP 6: Clean-up dell'ambiente
-		            stmt.close();
-		            conn.close();
+		            stmtDel.close();
+		            connDel.close();
 		        } catch (SQLException se) {
 		            // Errore durante l'apertura della connessione
 		            se.printStackTrace();
@@ -164,14 +164,14 @@ public class EventDao {
 		            
 		        } finally {
 		        	try {
-		                if (stmt != null)
-		                    stmt.close();
+		                if (stmtDel != null)
+		                    stmtDel.close();
 		            } catch (SQLException se2) {
 		            	se2.printStackTrace();
 		            }
 		            try {
-		                if (conn != null)
-		                    conn.close();
+		                if (connDel != null)
+		                    connDel.close();
 		            } catch (SQLException se) {
 		                se.printStackTrace();
 		            }
@@ -180,39 +180,39 @@ public class EventDao {
 			}
 			
 			public Event getEvent(String artist) {
-				Statement stmt = null;
-		        Connection conn = null;
+				Statement evStmt = null;
+		        Connection evConn = null;
 		        Event e= null;
 		        try {
 		        	//STEP 2: loading dinamico del driver mysql
 		            Class.forName(driverClassName);
 		            
 		         // STEP 3: apertura connessione
-		            conn = DriverManager.getConnection(dbUrl, user, pass);
+		            evConn = DriverManager.getConnection(dbUrl, user, pass);
 		            
 		         // STEP 4.1: creazione ed esecuzione della query
-		            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+		            evStmt = evConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 		                    ResultSet.CONCUR_READ_ONLY);
 		            String sql = "SELECT * FROM events WHERE artist = '" +artist+"'";
-		            ResultSet rs = stmt.executeQuery(sql);
+		            ResultSet evRs = evStmt.executeQuery(sql);
 		            
-		            if (!rs.first()) { // rs not empty
+		            if (!evRs.first()) { // rs not empty
 		            	return null;
 		            }
 		         // riposizionamento del cursore
-		            rs.first();
+		            evRs.first();
 		            
 		         // lettura colonne
-		            String name  = rs.getString("name");
-	            	String place = rs.getString("place");
-	            	String description = rs.getString("description");
-	            	String art = rs.getString("artist");
+		            String name  = evRs.getString("name");
+	            	String place = evRs.getString("place");
+	            	String description = evRs.getString("description");
+	            	String art = evRs.getString("artist");
 		         //create entity
 		            e = new Event(name, art, description, place);
 		            // STEP 6: Clean-up dell'ambiente
-		            rs.close();
-		            stmt.close();
-		            conn.close();
+		            evRs.close();
+		            evStmt.close();
+		            evConn.close();
 		        } catch (SQLException se) {
 		            // Errore durante l'apertura della connessione
 		            se.printStackTrace();
@@ -222,14 +222,14 @@ public class EventDao {
 		            
 		        } finally {
 		        	try {
-		                if (stmt != null)
-		                    stmt.close();
+		                if (evStmt != null)
+		                	evStmt.close();
 		            } catch (SQLException se2) {
 		            	se2.printStackTrace();
 		            }
 		            try {
-		                if (conn != null)
-		                    conn.close();
+		                if (evConn != null)
+		                	evConn.close();
 		            } catch (SQLException se) {
 		                se.printStackTrace();
 		            }

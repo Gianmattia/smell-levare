@@ -1,49 +1,49 @@
 package logic.bean;
 
 public class ArtistBean {
-	private String username;
-	private String password;
-	private String email;
-	private String description;
-	private String talent;
+	private String usernameBean;
+	private String passwordBean;
+	private String emailBean;
+	private String descriptionBean;
+	private String talentBean;
 	
 	public String getUsername() {
-		return username;
+		return usernameBean;
 	}
 	
 	public void setUsername(String username) {
-		this.username = username;
+		this.usernameBean = username;
 	}
 	
 	public String getPassword() {
-		return password;
+		return passwordBean;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.passwordBean = password;
 	}
 
 	public String getEmail() {
-		return email;
+		return emailBean;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.emailBean = email;
 	}
 
 	public String getDescription() {
-		return description;
+		return descriptionBean;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.descriptionBean = description;
 	}
 
 	public String getTalent() {
-		return talent;
+		return talentBean;
 	}
 
 	public void setTalent(String talent) {
-		this.talent = talent;
+		this.talentBean = talent;
 	}
 }

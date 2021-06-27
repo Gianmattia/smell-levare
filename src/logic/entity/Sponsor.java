@@ -1,59 +1,59 @@
 package logic.entity;
 
 public class Sponsor {
-	private String username;
-	private String password;
-	private String activity;
-	private String capacity;
-	private String description;
+	private String usernameEntity;
+	private String passwordEntity;
+	private String activityEntity;
+	private String capacityEntity;
+	private String descriptionEntity;
 	
 	public Sponsor(String username, String password, String activity, String capacity, String description) {
 		super();
-		this.username = username;
-		this.password = password;
-		this.activity = activity;
-		this.capacity = capacity;
-		this.description = description;
+		this.usernameEntity = username;
+		this.passwordEntity = password;
+		this.activityEntity = activity;
+		this.capacityEntity = capacity;
+		this.descriptionEntity = description;
 	}
 
 	public String getUsername() {
-		return username;
+		return usernameEntity;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.usernameEntity = username;
 	}
 
 	public String getPassword() {
-		return password;
+		return passwordEntity;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.passwordEntity = password;
 	}
 
 	public String getActivity() {
-		return activity;
+		return activityEntity;
 	}
 
 	public void setActivity(String activity) {
-		this.activity = activity;
+		this.activityEntity = activity;
 	}
 
 	public String getCapacity() {
-		return capacity;
+		return capacityEntity;
 	}
 
 	public void setCapacity(String capacity) {
-		this.capacity = capacity;
+		this.capacityEntity = capacity;
 	}
 
 	public String getDescription() {
-		return description;
+		return descriptionEntity;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.descriptionEntity = description;
 	}
 	
 	

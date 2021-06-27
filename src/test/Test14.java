@@ -8,7 +8,7 @@ import java.util.List;
 import logic.applicationController.RSSApplicationController;
 import   logic.bean.RequestedShowBean;
 
-public class test14 {
+public class Test14 {
 
 	@Test
 	public void chechdescriptionshow() {

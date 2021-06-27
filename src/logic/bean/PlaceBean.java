@@ -2,34 +2,34 @@ package logic.bean;
 
 public class PlaceBean {
 
-	protected String name;
-	private int capacity;
-	protected String address;
-	private String free; //free is used to get who has booked this place
+	protected String nameBean;
+	private int capacityBean;
+	protected String addressBean;
+	private String freeBean; //free is used to get who has booked this place
 	
 	
 	public String getName() {
-		return name;
+		return nameBean;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.nameBean = name;
 	}
 	public int getCapacity() {
-		return capacity;
+		return capacityBean;
 	}
 	public void setCapacity(int capacity) {
-		this.capacity = capacity;
+		this.capacityBean = capacity;
 	}
 	public String getAddress() {
-		return address;
+		return addressBean;
 	}
 	public void setAddress(String address) {
-		this.address = address;
+		this.addressBean = address;
 	}
 	public String isFree() {
-		return free;
+		return freeBean;
 	}
 	public void setFree(String free) {
-		this.free = free;
+		this.freeBean = free;
 	}
 }

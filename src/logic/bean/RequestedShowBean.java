@@ -1,68 +1,68 @@
 package logic.bean;
 
 public class RequestedShowBean {
-	String host;
-	String title;
-	String partner;
-	String artist;
-	String description;
-	String approvedArtist;
-	String approvedPartner;
+	String hostBean;
+	String titleBean;
+	String partnerBean;
+	String artistBean;
+	String descriptionBean;
+	String approvedArtistBean;
+	String approvedPartnerBean;
 	
 	public String getHost() {
-		return host;
+		return hostBean;
 	}
 
 	public void setHost(String host) {
-		this.host = host;
+		this.hostBean = host;
 	}
 
 	public String getTitle() {
-		return title;
+		return titleBean;
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		this.titleBean = title;
 	}
 
 	public String getPartner() {
-		return partner;
+		return partnerBean;
 	}
 
 	public void setPartner(String partner) {
-		this.partner = partner;
+		this.partnerBean = partner;
 	}
 
 	public String getArtist() {
-		return artist;
+		return artistBean;
 	}
 
 	public void setArtist(String artist) {
-		this.artist = artist;
+		this.artistBean = artist;
 	}
 
 	public String getDescription() {
-		return description;
+		return descriptionBean;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.descriptionBean = description;
 	}
 
 	public String getApprovedArtist() {
-		return approvedArtist;
+		return approvedArtistBean;
 	}
 
 	public void setApprovedArtist(String approvedArtist) {
-		this.approvedArtist = approvedArtist;
+		this.approvedArtistBean = approvedArtist;
 	}
 
 	public String getApprovedPartner() {
-		return approvedPartner;
+		return approvedPartnerBean;
 	}
 
 	public void setApprovedPartner(String approvedPartner) {
-		this.approvedPartner = approvedPartner;
+		this.approvedPartnerBean = approvedPartner;
 	}
 	
 }

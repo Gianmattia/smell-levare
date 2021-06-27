@@ -27,42 +27,42 @@ public class SponsorDao {
     String d = "description";
 	
 	public Sponsor getSponsor(String username) {
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmtgs = null;
+        Connection conngs = null;
         Sponsor s = null;
         try {
         	//STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass);
+            conngs = DriverManager.getConnection(dbUrl, user, pass);
             
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtgs = conngs.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM sponsors WHERE username = '" +username+"'";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rsgs = stmtgs.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!rsgs.first()) { // rs not empty
             	return null;
             }
          // riposizionamento del cursore
-            rs.first();
+            rsgs.first();
             
          // lettura colonne
-            String usrnm = rs.getString(u);
-            String psswrd = rs.getString(p);
-            String activity = rs.getString(a);
-            String capacity = rs.getString(c);
-            String description = rs.getString(d);
+            String usrnm = rsgs.getString(u);
+            String psswrd = rsgs.getString(p);
+            String activity = rsgs.getString(a);
+            String capacity = rsgs.getString(c);
+            String description = rsgs.getString(d);
             
          //create entity
             s = new Sponsor(usrnm, psswrd, activity, capacity, description);
             // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
+            rsgs.close();
+            stmtgs.close();
             
-            conn.close();
+            conngs.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
             se.printStackTrace();
@@ -72,14 +72,14 @@ public class SponsorDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtgs != null)
+                    stmtgs.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (conngs != null)
+                    conngs.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
@@ -89,46 +89,46 @@ public class SponsorDao {
 	}
 	
 	public Sponsor loginSponsor(String username, String password) {
-		Statement stmt = null;
-        Connection conn = null;
-        Sponsor s = null;
+		Statement stmtls = null;
+        Connection connls = null;
+        Sponsor spon = null;
         try {
         	//STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass);
+            connls = DriverManager.getConnection(dbUrl, user, pass);
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtls = connls.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM sponsors WHERE username = '" +username+"'";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rsls = stmtls.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!rsls.first()) { // rs not empty
             	return null;
             }
          // riposizionamento del cursore
-            rs.first();
+            rsls.first();
             
          // lettura colonne
-            String usrnm = rs.getString(u);
-            String psswrd = rs.getString(p);
-            String activity = rs.getString(a);
-            String capacity = rs.getString(c);
-            String description = rs.getString(d);
+            String usrnm = rsls.getString(u);
+            String psswrd = rsls.getString(p);
+            String activity = rsls.getString(a);
+            String capacity = rsls.getString(c);
+            String description = rsls.getString(d);
             if (!usrnm.equals(username)|| !psswrd.equals(password)) {
             	//controllo 
             	return null;
             }
          //create entity
-            s = new Sponsor(usrnm, psswrd, activity, capacity, description);
+            spon = new Sponsor(usrnm, psswrd, activity, capacity, description);
             // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
+            rsls.close();
+            stmtls.close();
             
-            conn.close();
+            connls.close();
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
             se.printStackTrace();
@@ -138,25 +138,25 @@ public class SponsorDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtls != null)
+                    stmtls.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (connls != null)
+                    connls.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
         }
-		return s;
+		return spon;
         	
 	}
 	
 	public List<Sponsor> getSponsors(){
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmtGetSs = null;
+        Connection connGetSs = null;
         List<Sponsor> sponsors = new ArrayList<>();
         
         try {
@@ -164,40 +164,40 @@ public class SponsorDao {
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass);
+            connGetSs = DriverManager.getConnection(dbUrl, user, pass);
             
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtGetSs = connGetSs.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM sponsors";
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rsGetSs = stmtGetSs.executeQuery(sql);
             
-            if (!rs.first()) { // rs not empty
+            if (!rsGetSs.first()) { // rs not empty
             	return sponsors;
             }
          // riposizionamento del cursore
-            rs.first();
+            rsGetSs.first();
             do {
             	// lettura colonne
-            	String name  = rs.getString("username");
-            	String password = rs.getString("password");
-            	String activity = rs.getString("activity");
-            	String description = rs.getString("description");
-            	String capacity = rs.getString("capacity");
+            	String name  = rsGetSs.getString("username");
+            	String password = rsGetSs.getString("password");
+            	String activity = rsGetSs.getString("activity");
+            	String description = rsGetSs.getString("description");
+            	String capacity = rsGetSs.getString("capacity");
             	
             	Sponsor spo = new Sponsor(name, password, activity, capacity, description);
             	sponsors.add(spo);
-            }while(rs.next());
+            }while(rsGetSs.next());
             
             
             
             
          // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
-            conn.close();
+            rsGetSs.close();
+            stmtGetSs.close();
+            connGetSs.close();
             
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
@@ -208,14 +208,14 @@ public class SponsorDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtGetSs != null)
+                    stmtGetSs.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (connGetSs != null)
+                    connGetSs.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
@@ -225,19 +225,19 @@ public class SponsorDao {
 	}
 	
 	public void createSSQueue(String title, String artist, String partner, String description) throws PendingRequestException {
-		Statement stmt = null;
-        Connection conn = null;
+		Statement stmtsqueue = null;
+        Connection connsqueue = null;
         
         try {
         	// STEP 2: loading dinamico del driver mysql
             Class.forName(driverClassName);
             
          // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(dbUrl, user, pass); 
+            connsqueue = DriverManager.getConnection(dbUrl, user, pass); 
             
         	
          // STEP 4.1: creazione ed esecuzione della query
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            stmtsqueue = connsqueue.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY); 
         	SessionSponsor ss = SessionSponsor.getInstance();
             String host = ss.getUsername();
@@ -245,15 +245,15 @@ public class SponsorDao {
         	String yes ="yes";
             if(partner.equals("")) {
             	String sql = "INSERT INTO sponsored_shows_queue (host, title, partner, artist, description, approvedArtist, approvedPartner) VALUES ('" +host+"','"+title+"','"+no+"','"+artist+"','"+description+"','"+no+"','"+yes+"')";
-            	stmt.executeUpdate(sql);
+            	stmtsqueue.executeUpdate(sql);
             }
             else {
             	String sql = "INSERT INTO sponsored_shows_queue (host, title, partner, artist, description, approvedArtist, approvedPartner) VALUES ('" +host+"','"+title+"','"+partner+"','"+artist+"','"+description+"','"+no+"','"+no+"')";
-            	stmt.executeUpdate(sql);
+            	stmtsqueue.executeUpdate(sql);
             }
          // STEP 6: Clean-up dell'ambiente
-            stmt.close();
-            conn.close();
+            stmtsqueue.close();
+            connsqueue.close();
         } catch (SQLException se) {
             throw new PendingRequestException("stai già contattando un artista");
         } catch (Exception e) {
@@ -262,14 +262,14 @@ public class SponsorDao {
             
         } finally {
         	try {
-                if (stmt != null)
-                    stmt.close();
+                if (stmtsqueue != null)
+                    stmtsqueue.close();
             } catch (SQLException se2) {
             	se2.printStackTrace();
             }
             try {
-                if (conn != null)
-                    conn.close();
+                if (connsqueue != null)
+                    connsqueue.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
